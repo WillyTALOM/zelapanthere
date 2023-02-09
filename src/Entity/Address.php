@@ -33,6 +33,9 @@ class Address
     #[ORM\OneToMany(mappedBy: 'delivery_address', targetEntity: Order::class)]
     private Collection $orders;
 
+    #[ORM\ManyToOne(inversedBy: 'addresses')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -129,6 +132,18 @@ class Address
                 $order->setDeliveryAddress(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
