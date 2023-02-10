@@ -47,10 +47,11 @@ class Product
     private Collection $orderDetails;
 
     #[ORM\Column(nullable: true)]
-    private ?int $reduction = null;
+    private ?float $reduction = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $priceSold = null;
+    private ?float $priceSold = null;
+
 
     public function __construct()
     {
@@ -219,24 +220,24 @@ class Product
         return $this;
     }
 
-    public function getReduction(): ?int
+    public function getReduction(): ?float
     {
         return $this->reduction;
     }
 
-    public function setReduction(?int $reduction): self
+    public function setReduction(?float $reduction): self
     {
         $this->reduction = $reduction;
 
         return $this;
     }
 
-    public function getPriceSold(): ?int
+    public function getPriceSold(): ?float
     {
         return $this->priceSold;
     }
 
-    public function setPriceSold(?int $priceSold): self
+    public function setPriceSold(?float $priceSold): self
     {
         $this->priceSold = $priceSold;
 

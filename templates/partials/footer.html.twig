@@ -1,0 +1,42 @@
+<div class="container-fluid bg-dark text-light">
+    <div class="row text-center p-5">
+        <div class="col-md-6 col-lg-4 order-2 order-md-1 pb-5 pb-md-0">
+            <h5>QUELQUES LIENS</h5>
+            <hr class="m-3"></hr>
+            <ul>
+                <li><a href="{{ path('home') }}" class="text-light">Accueil</a></li>
+                <li><a href="#" class="text-light">Catégories</a></li>
+                <li><a href="#" class="text-light">Produits</a></li>
+                {% if app.user %}
+                    <li><a href="#" class="text-light">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="#" class="text-light">Connexion</a></li>
+                {% endif %}
+                <li><a href="#" class="text-light">Panier</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6 col-lg-4 order-1 order-md-3 order-lg-2 mx-md-auto my-auto pb-5 py-md-5 px-lg-5">
+            <img src="#" alt="logo {{ contact_company }}" class="w-100 py-5 py-md-0 px-xl-5">
+        </div>
+        <div class="col-md-6 col-lg-4 order-3 order-md-2 order-lg-3 py-5 py-md-0">
+            <h5>COORDONNÉES</h5>
+            <hr class="m-3">
+            <p>{{ contact_company }}</p>
+            <p>{{ contact_address }}</p>
+            <p>{{ contact_zip ~ ' ' ~ contact_city }}</p>
+            <p>{{ contact_phone }}</p>
+            <p>{{ contact_email }}</p>
+        </div>
+    </div>
+    <div class="row" id="copyright">
+        <div class="col-12 text-center">
+            <p>
+                Copyright &copy; 2022 - {{ "now"|date("Y") }} | 
+                <a href="#" target="_blank" class="text-light">Willy TALOM</a> | 
+                <a href="#" class="text-light">CGU & CGV</a> - 
+                <a href="#" class="text-light">mentions légales</a> - 
+                <a href="#" class="text-light">politique de confidentialité</a>
+            </p>
+        </div>
+    </div>
+</div>

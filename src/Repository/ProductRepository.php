@@ -63,4 +63,43 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+        public function findBestSellers(): array
+        {
+            return $this->createQueryBuilder('p')
+                ->innerJoin('App\Entity\OrderDetails', 'od', 'WITH', 'p.id = od.product_id')
+                ->groupBy('od.product_id')
+                ->orderBy('SUM(od.quantity)', 'DESC')
+                ->setMaxResults(8)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+    //     public function findLastEight(): array
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->orderBy('p.id ', 'DESC')
+    //         ->setMaxResults(8)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
+
+    public function findLastEight(): array
+    {
+        // $db = $this->getEntityManager()->getConnection();
+        // $req = $db->prepare('SELECT * FROM product ORDER BY created_at DESC, id DESC LIMIT 8');
+        // $results = $req->executeQuery();
+        // return $results->fetchAllAssociative();
+
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            ORDER BY p.created_at DESC, p.id DESC'
+        )->setMaxResults(8);
+        return $query->getResult();
+    }
+
+    
 }

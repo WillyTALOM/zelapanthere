@@ -1,0 +1,34 @@
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('home') }}"><img src="#" alt="logo {{ contact_company }}"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav">
+                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+                {# <a class="nav-link" href="#">Catégories</a> #}
+                <a class="nav-link" href="#">Produits</a>
+                {# <a class="nav-link" href="{{ path('user_index') }}">Mon compte ({{ app.user.firstName }})</a> #}
+                <a class="nav-link" href="#">Connexion</a>               
+                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="#">
+                    Panier 
+                        <span class="badge rounded-pill text-bg-secondary">
+                            {# {{ render(controller('App\\Controller\\CartController::getNbProducts')) }} #}
+                        </span>
+                  
+                </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="nav-link" href="#">Admin</a>
+                {% endif %}
+            </div>
+            <div class="ms-lg-3">
+                {# {{ render(controller(
+                    'App\\Controller\\ProductController::searchBar'
+                )) }} #}
+            </div>
+        </div>
+    </div>
+</nav>

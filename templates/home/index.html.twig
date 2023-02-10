@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}{{ contact_company }} - votre nouvelle boutique de livres en ligne{% endblock %}
+
+{% block title %}accueil{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block h1 %}Bienvenue chez {{ contact_company }}{% endblock %}
+
+{% block body %}
+
+    <div class="col-12">
+        <h2 class="my-3">Derniers produits</h2>
+        <div class="row">
+            {# affichage des produits #}
+            {% for product in products %}
+            <div class="col-md-6 col-lg-5 col-xl-3 p-3">
+			<div class="card h-100">
+				{% if product.createdAt|date('Y-m-d') >= 'now'|date_modify('-20 days')|date('Y-m-d') %}
+				<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Nouveauté
+				</div>
+				{% endif %}       
+                
+				<img class="card-img-top" src= "{{ asset('img/livre.jpg')}}" alt="image principale du livre {{ product.name }}" />
+
+				<div class="card-body p-4">
+					<div class="text-center">
+						<h5 class="fw-bolder">{{ product.name }}</h5>
+						<h6 id="text-des">{{ product.description|u.truncate(70,'...', false) }}</h6>
+						{% if product.reduction == 0 %}
+						<span class="">{{product.price|number_format(2, ',', ' ')}} €</span>
+						{% else %}
+						<span class="text-decoration-line-through text-danger">{{product.price|number_format(2, ',', '
+							')}} €</span>
+						<span>{{product.priceSold|number_format(2, ',', ' ')}} €</span>
+						{% endif %}
+					</div>
+				</div>
+				<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+					<div class="text-center">
+						<a href="{{ path('product_show', {slug: product.slug}) }}"
+							class="card-link btn btn-outline-primary">Détails</a>
+						<a href="#"
+							class="card-link btn btn-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}">
+							<i class="bi bi-cart-plus-fill"></i></a>
+						<a href="#" class="card-link btn btn-danger"> <i
+								class="bi bi-heart-fill"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+             {% endfor %}
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-12">
+            <h2 class="mb-3">{{ contact_company }}</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus asperiores, minus veritatis totam natus, vel illo amet repellendus ducimus provident nihil est magni consequuntur velit possimus, pariatur minima neque eos. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime ad expedita nihil, maiores ullam inventore recusandae, ducimus nisi animi quia enim fuga facilis accusamus dignissimos magnam dicta incidunt quam sequi !</p>
+        </div>
+    </div>
+
+    {# {% if product in bestSellers >= 5 %}
+        <div class="row mt-3 mb-5">
+        <div class="col-12">
+            <h2 class="mb-3">Meilleures ventes</h2>
+            <div class="row">
+                {# {% for item in bestSellers %} #}
+                    <div class="col-md-6 col-lg-4 col-xl-3 p-3">
+                        <div class="card text-center">
+                            <img src="#" class="card-img-top p-3" alt="image principale du jeu item.name">
+                            {# {% if item.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
+                                <span class="new_product">Nouveauté</span>
+                            {% endif %} #}
+                            {# {% if item.quantity >= 5 and item.quantity > 0 %}
+                                <span class="last_products">Derniers produits</span>
+                            {% endif %} #}
+                            <div class="card-body">
+                                <h5 class="card-title">item.name</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                {# <a href="{{ path('product_show', {'slug': item.slug}) }}" class="card-link btn btn-outline-primary">Détails</a>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <a href="{{ path('favorite_add', {'id': item.id}) }}" class="card-link btn btn-danger"><i class="bi bi-heart-fill"></i></a>
+                                {% endif %}
+                                <a href="{{ path('cart_add', {'id': item.id}) }}" class="card-link btn btn-{{ item.quantity != 0 ? 'success' : 'danger disabled' }}"><i class="bi bi-cart-plus-fill"></i></a> #}
+                            </div>
+                        </div>
+                    </div>
+                {# {% endfor %} #}
+            </div>
+        </div>
+    </div>
+    
+    
+    
+
+{% endblock %}
