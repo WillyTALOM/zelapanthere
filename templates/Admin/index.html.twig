@@ -1,0 +1,16 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block title %}accueil{% endblock %}
+{% block stylesheets %} <link rel="stylesheet" href="{{ asset('css/admin.css') }}"> {% endblock %}
+
+{% block body %}
+
+<div class="container-fluid text-center">
+    <h1 class="mb-5">Bienvenue dans l'espace administrateur de votre entreprise</h1>
+
+    <p class="text-center">Merci de cliquer sur une icone dans le menu du haut pour commencer à administrer votre site.
+        le contenu apparaîtra dans cette section.</p>
+    <i class="bi bi-hand-index"></i>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block title %}Détail du {{ product.name }}{% endblock %}
+
+{% block body %}
+    <h1>Détail du produit {{ product.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ product.slug }}</td>
+            </tr>
+            <tr>
+                <th>Abstract</th>
+                <td>{{ product.abstract }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ product.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ product.price }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ product.reference }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reduction</th>
+                <td>{{ product.reduction }}</td>
+            </tr>
+            <tr>
+                <th>PriceSold</th>
+                <td>{{ product.priceSold }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_product_list') }}">back to list</a>
+
+    <a href="{{ path('admin_product_edit', {'id': product.id}) }}">edit</a>
+
+    {{ include('Admin/product/_delete_form.html.twig') }}
+{% endblock %}

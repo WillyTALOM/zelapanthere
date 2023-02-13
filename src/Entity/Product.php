@@ -40,7 +40,7 @@ class Product
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Image::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $image;
 
     #[ORM\OneToMany(mappedBy: 'product_id', targetEntity: OrderDetails::class)]

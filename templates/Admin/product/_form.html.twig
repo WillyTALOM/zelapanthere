@@ -1,4 +1,75 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+<div class="container-fluid">
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-6">
+            {{ form_label(form.name, 'Nom') }}
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name, {
+            'attr': {
+            'placeholder': 'Ex.: T-shirt'
+            }
+            }) }}
+            {{ form_help(form.name) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(form.quantity, {
+            'label': 'Quantité',
+            'attr': {
+            'placeholder': 'Ex.: 12'
+            }
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(form.price, {
+            'label': 'Prix (en €)',
+            'attr': {
+            'placeholder': 'Ex.: 123.45'
+            }
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(form.reduction, {
+            'label': 'Reduction (en %)',
+            'attr': {
+            'placeholder': 'Ex.: 10'
+            }
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(form.reference, {
+            'label': 'Reference du produit ',
+            'attr': {
+            'placeholder': 'Ex.: 154TR7'
+            }
+            }) }}
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(form.abstract, {
+            'label': 'Résumé'
+            }) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.description, {
+            'label': 'Description'
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(form.images, {
+            'label': 'Images'
+            }) }}
+        </div>
+        
+   
+        
+
+        {{ form_end(form) }}
+
+        <button class="btn btn-success">Créer</button>
+
+	</div>
