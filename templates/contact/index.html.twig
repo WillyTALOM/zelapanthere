@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}contact
+{% endblock %}
+
+{% block h1 %}
+Nous contacter
+{% endblock %}
+
+{% block body %}
+
+{{form_start(contactForm)}}
+
+<div class="row">
+	<div class="col-md-5 offset-md-1 col-lg-4 offset-lg-2">
+		{% if app.user %}
+		{{ form_row(contactForm.firstName, {
+		'label': 'Prénom',
+		'value': app.user.firstName
+		}) }}
+		{% else %}
+		{{ form_row(contactForm.firstName, {
+		'label': 'Prénom'
+		}) }}
+		{% endif %}
+	</div>
+	<div class="col-md-5 col-lg-4">
+		{% if app.user %}
+		{{ form_row(contactForm.lastName, {
+		'label': 'Nom',
+		'value': app.user.lastName
+		}) }}
+		{% else %}
+		{{ form_row(contactForm.lastName, {
+		'label': 'Nom'
+		}) }}
+		{% endif %}
+	</div>
+
+
+</div>
+
+<div class="row">
+	<div class="col-md-4 offset-md-1 col-lg-4 offset-lg-2">
+		{{ form_row(contactForm.company, {
+		'label': 'Entreprise'
+		}) }}
+	</div>
+	<div class="col-md-4 col-lg-4">
+		{% if app.user %}
+		{{ form_row(contactForm.email, {
+		'value': app.user.email
+		}) }}
+		{% else %}
+		{{ form_row(contactForm.email) }}
+		{% endif %}
+	</div>
+    
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-1 col-lg-4 offset-lg-2">
+            {% if app.user %}
+            {{ form_row(contactForm.phone, {
+            'label': 'Téléphone',
+            'value': app.user.phone
+            }) }}
+            {% else %}
+            {{ form_row(contactForm.phone, {
+            'label': 'Téléphone'
+            }) }}
+            {% endif %}
+    </div>
+</div>
+<div class="row">
+	<div class="col-md-5 offset-md-1 col-lg-4 offset-lg-2">
+		{{ form_row(contactForm.subject, {
+		'label': 'Objet'
+		}) }}
+	</div>
+	<div class="col-md-5 col-lg-4">
+		{{ form_row(contactForm.attachment, {
+		'label': 'Document'
+		}) }}
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+		{{ form_row(contactForm.message) }}
+	</div>
+</div>
+
+<div class="row text-end my-5">
+	<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+		<button type="submit" class="btn btn-success">Envoyer</button>
+	</div>
+</div>
+
+{{form_end(contactForm)}}
+
+
+<div class="my-5">
+	<ul class='text-center p-0'>
+		<li>{{ contact_company }}</li>
+		<li>{{ contact_address }}</li>
+		<li>{{ contact_zip }}</li>
+		<li>{{ contact_phone }}</li>
+		<li>{{ contact_email}}</li>
+	</ul>
+</div>
+
+
+{% endblock %}

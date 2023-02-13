@@ -68,20 +68,20 @@
         <div class="col-12">
             <h2 class="mb-3">Meilleures ventes</h2>
             <div class="row">
-                {# {% for item in bestSellers %} #}
+                {# {% for item in bestSellers %} 
                     <div class="col-md-6 col-lg-4 col-xl-3 p-3">
                         <div class="card text-center">
                             <img src="#" class="card-img-top p-3" alt="image principale du jeu item.name">
-                            {# {% if item.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
+                            {% if item.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
                                 <span class="new_product">Nouveauté</span>
                             {% endif %} #}
                             {# {% if item.quantity >= 5 and item.quantity > 0 %}
                                 <span class="last_products">Derniers produits</span>
-                            {% endif %} #}
+                            {% endif %} 
                             <div class="card-body">
                                 <h5 class="card-title">item.name</h5>
                             </div>
-                            <div class="card-body pt-0">
+                            <div class="card-body pt-0">#}
                                 {# <a href="{{ path('product_show', {'slug': item.slug}) }}" class="card-link btn btn-outline-primary">Détails</a>
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     <a href="{{ path('favorite_add', {'id': item.id}) }}" class="card-link btn btn-danger"><i class="bi bi-heart-fill"></i></a>
@@ -94,8 +94,7 @@
             </div>
         </div>
     </div>
-    <div class="bbb_viewed">
-    <div class="container">
+    <div class="bbb_viewed mb-5">
         <div class="row">
             <div class="col">
                <div class="bbb_main_container">
@@ -119,14 +118,13 @@
                                     <li class="item_mark item_discount">-25%</li>
                                     <li class="item_mark item_new">new</li>
                                 </ul>
-                            </div>
+                            </div>    
                         </div>
-                 </div>
-               </div> 
-            </div>
+                    </div>
+                </div>
+            </div> 
         </div>
     </div>
-</div>
     
     
 
