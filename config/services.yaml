@@ -7,6 +7,7 @@ parameters:
      product_file_dir: '%kernel.project_dir%/public/img/'
      images_directory: '%kernel.project_dir%/public/assets/uploads/'
      contact_email: "%env(CONTACT_EMAIL)%"
+     carrier_image_dir: "%kernel.project_dir%/public/img/carrier"
 
 
 services:

@@ -10,104 +10,107 @@ Nous contacter
 {% block body %}
 
 {{form_start(contactForm)}}
-
-<div class="row">
-	<div class="col-md-5 offset-md-1 col-lg-4 offset-lg-2">
-		{% if app.user %}
-		{{ form_row(contactForm.firstName, {
-		'label': 'Prénom',
-		'value': app.user.firstName
-		}) }}
-		{% else %}
-		{{ form_row(contactForm.firstName, {
-		'label': 'Prénom'
-		}) }}
-		{% endif %}
-	</div>
-	<div class="col-md-5 col-lg-4">
-		{% if app.user %}
-		{{ form_row(contactForm.lastName, {
-		'label': 'Nom',
-		'value': app.user.lastName
-		}) }}
-		{% else %}
-		{{ form_row(contactForm.lastName, {
-		'label': 'Nom'
-		}) }}
-		{% endif %}
-	</div>
-
-
-</div>
-
-<div class="row">
-	<div class="col-md-4 offset-md-1 col-lg-4 offset-lg-2">
-		{{ form_row(contactForm.company, {
-		'label': 'Entreprise'
-		}) }}
-	</div>
-	<div class="col-md-4 col-lg-4">
-		{% if app.user %}
-		{{ form_row(contactForm.email, {
-		'value': app.user.email
-		}) }}
-		{% else %}
-		{{ form_row(contactForm.email) }}
-		{% endif %}
-	</div>
-    
-</div>
-<div class="row">
-    <div class="col-md-4 offset-md-1 col-lg-4 offset-lg-2">
+<svg class="background--custom" id="demo" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path fill="#c3e96f" fill-opacity="0.5" d="M-100 -100L200 -100L200 20L-100 20Z" style="animation: path0 2.6881720430107525s linear infinite alternate;" /><path fill="#363e26" fill-opacity="0.2" d="M-100 -100L200 -100L200 50L-100 50Z" style="animation: path1 5.74712643678161s linear infinite alternate;" /><path fill="#72cec6" fill-opacity="0.8" d="M-100 -100L200 -100L200 60L-100 60Z" style="animation: path2 15.625s linear infinite alternate;" />
+</svg>
+<div classe= "container">
+    <div class="row ">
+        <div class="col-md-5 offset-md-1 col-lg-4 offset-lg-2">
             {% if app.user %}
-            {{ form_row(contactForm.phone, {
-            'label': 'Téléphone',
-            'value': app.user.phone
+            {{ form_row(contactForm.firstName, {
+            'label': 'Prénom',
+            'value': app.user.firstName
             }) }}
             {% else %}
-            {{ form_row(contactForm.phone, {
-            'label': 'Téléphone'
+            {{ form_row(contactForm.firstName, {
+            'label': 'Prénom'
             }) }}
             {% endif %}
+        </div>
+        <div class="col-md-5 col-lg-4">
+            {% if app.user %}
+            {{ form_row(contactForm.lastName, {
+            'label': 'Nom',
+            'value': app.user.lastName
+            }) }}
+            {% else %}
+            {{ form_row(contactForm.lastName, {
+            'label': 'Nom'
+            }) }}
+            {% endif %}
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 offset-md-1 col-lg-4 offset-lg-2">
+            {{ form_row(contactForm.company, {
+            'label': 'Entreprise'
+            }) }}
+        </div>
+        <div class="col-md-4 col-lg-4">
+            {% if app.user %}
+            {{ form_row(contactForm.email, {
+            'value': app.user.email
+            }) }}
+            {% else %}
+            {{ form_row(contactForm.email) }}
+            {% endif %}
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-1 col-lg-4 offset-lg-2">
+                {% if app.user %}
+                {{ form_row(contactForm.phone, {
+                'label': 'Téléphone',
+                'value': app.user.phone
+                }) }}
+                {% else %}
+                {{ form_row(contactForm.phone, {
+                'label': 'Téléphone'
+                }) }}
+                {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 offset-md-1 col-lg-4 offset-lg-2">
+            {{ form_row(contactForm.subject, {
+            'label': 'Objet'
+            }) }}
+        </div>
+        <div class="col-md-5 col-lg-4">
+            {{ form_row(contactForm.attachment, {
+            'label': 'Document'
+            }) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            {{ form_row(contactForm.message) }}
+        </div>
+    </div>
+
+    <div class="row text-end my-5">
+        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <button type="submit" class="btn btn-success">Envoyer</button>
+        </div>
+    </div>
+
+    {{form_end(contactForm)}}
+
+
+    <div class="my-5">
+        <ul class='text-center p-0'>
+            <li>{{ contact_company }}</li>
+            <li>{{ contact_address }}</li>
+            <li>{{ contact_zip }}</li>
+            <li>{{ contact_phone }}</li>
+            <li>{{ contact_email}}</li>
+        </ul>
     </div>
 </div>
-<div class="row">
-	<div class="col-md-5 offset-md-1 col-lg-4 offset-lg-2">
-		{{ form_row(contactForm.subject, {
-		'label': 'Objet'
-		}) }}
-	</div>
-	<div class="col-md-5 col-lg-4">
-		{{ form_row(contactForm.attachment, {
-		'label': 'Document'
-		}) }}
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-		{{ form_row(contactForm.message) }}
-	</div>
-</div>
-
-<div class="row text-end my-5">
-	<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-		<button type="submit" class="btn btn-success">Envoyer</button>
-	</div>
-</div>
-
-{{form_end(contactForm)}}
-
-
-<div class="my-5">
-	<ul class='text-center p-0'>
-		<li>{{ contact_company }}</li>
-		<li>{{ contact_address }}</li>
-		<li>{{ contact_zip }}</li>
-		<li>{{ contact_phone }}</li>
-		<li>{{ contact_email}}</li>
-	</ul>
-</div>
-
 
 {% endblock %}
