@@ -20,7 +20,7 @@ class ProductListController extends AbstractController
     #[Route('/admin1025/products', name: 'admin_product_list' , methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
-        return $this->render('Admin/product/index.html.twig', [
+        return $this->render('Admin/product/adminList.html.twig', [
             'products' => $productRepository->findAll(),
         ]);
     }
@@ -111,9 +111,9 @@ class ProductListController extends AbstractController
             
         }
 
-        return $this->render('Admin/product/create.html.twig', [
+        return $this->render('Admin/product/form.html.twig', [
             'product' => $product,
-            'form' => $form->createView()
+            'productForm' => $form->createView()
         ]);
     }
 
@@ -130,20 +130,22 @@ class ProductListController extends AbstractController
             return $this->redirectToRoute('admin_product_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('Admin/product/edit.html.twig', [
+        return $this->render('Admin/product/form.html.twig', [
             'product' => $product,
-            'form' => $form->createView()
+            'productForm' => $form->createView()
         ]);
     }
 
     #[Route('/admin1025/{id}', name: 'admin_product_delete')]
-    public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
+    public function delete(Product $product,  ManagerRegistry $managerRegistry): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
-            $productRepository->remove($product, true);
-        }
+        $manager = $managerRegistry->getManager();
+        $manager->remove($product);
+        $manager->flush();
 
-        return $this->redirectToRoute('admin_product_list', [], Response::HTTP_SEE_OTHER);
+        $this->addFlash('success', 'Le produit a bein été supprimé');
+        return $this->redirectToRoute('admin_product_list');
+
     }
 
 }

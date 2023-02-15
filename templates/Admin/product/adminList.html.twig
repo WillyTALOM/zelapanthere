@@ -1,14 +1,14 @@
 {% extends 'Admin/baseAdmin.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}Produits{% endblock %}
 
 {% block body %}
 
 
-    <h1 class="text-center">Liste des produits</h1>
+    <h1 class="pb-5 text-center">Liste des produits</h1>
 
-    <table class="table table-hover text-center table-sm">
-        <thead class="thead-dark">
+    <table class="table table-hover table-sm text-center align-middle text-center">
+        <thead class="table-dark">
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
@@ -27,7 +27,7 @@
             <tr>
                 
                 <td>{{ product.id }}</td>
-                <td class="text-start"><img src="{{ asset('img/livre.jpg')}}"
+                <td class="text-start"><img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[0].name )}}"
 					alt="image principale du produit {{ product.name }}" class="pe-3">{{ product.name }}</td>
                 <td>{{ product.description|u.truncate(50,'...', false) }}</td>
                 <td>{{ product.quantity }}</td>
@@ -45,18 +45,20 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="12">no records found</td>
+                <td colspan="12">Liste vide</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <button class="button-shrink"><a href="{{ path('admin_product_create') }}">Créer un nouveau produit</a></button>
+    <div class="text-end mt-4">
 
-    
+        <a href="{{ path('admin_product_create') }}" class="btn btn-outline-success button-shrink">Ajouter un produit</a>
+    </div>
+ 
+   
    
 
-  
   
 
 {% endblock %}

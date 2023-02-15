@@ -1,0 +1,92 @@
+{% extends "admin/baseAdmin.html.twig" %}
+
+{% block title %}
+{{ app.request.attributes.get('_route') == 'admin_product_create' ? 'création' : 'modification' }}
+produit
+{% endblock %}
+
+{% block body %}
+
+<h1 class="mb-5 text-center">{{ app.request.attributes.get('_route') == 'admin_product_create' ? 'Créer' : 'Modifier' }}
+	un produit</h1>
+
+<div class="container-fluid">
+    {{ form_start(productForm) }}
+
+    <div class="row">
+        <div class="col-6">
+            {{ form_label(productForm.name, 'Nom') }}
+            {{ form_errors(productForm.name) }}
+            {{ form_widget(productForm.name, {
+            'attr': {
+            'placeholder': 'Ex.: T-shirt'
+            }
+            }) }}
+            {{ form_help(productForm.name) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(productForm.quantity, {
+            'label': 'Quantité',
+            'attr': {
+            'placeholder': 'Ex.: 12'
+            }
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(productForm.price, {
+            'label': 'Prix (en €)',
+            'attr': {
+            'placeholder': 'Ex.: 123.45'
+            }
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(productForm.reduction, {
+            'label': 'Reduction (en %)',
+            'attr': {
+            'placeholder': 'Ex.: 10'
+            }
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(productForm.reference, {
+            'label': 'Reference du produit ',
+            'attr': {
+            'placeholder': 'Ex.: 154TR7'
+            }
+            }) }}
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(productForm.abstract, {
+            'label': 'Résumé'
+            }) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(productForm.description, {
+            'label': 'Description'
+            }) }}
+        </div>
+        <div class="col-3">
+            {{ form_row(productForm.images, {
+            'label': 'Images'
+            }) }}
+        </div>
+        
+        <div class="row">
+            <div class="col-12 text-end my-3">
+                <a href="{{ path('admin_product_list')}}" class="btn btn-outline-danger me-3">Annuler</a>
+                <button class="btn btn-outline-success">{{ app.request.attributes.get('_route') == 'admin_product_create' ? 'Créer' :
+                    'Modifier' }}
+                </button>
+            </div>
+	    </div>
+   
+        
+
+     {{ form_end(productForm) }}
+
+	{% endblock %}

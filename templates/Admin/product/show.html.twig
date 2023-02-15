@@ -3,7 +3,7 @@
 {% block title %}Détail du {{ product.name }}{% endblock %}
 
 {% block body %}
-    <h1>Détail du produit {{ product.name }}</h1>
+    <h1 class="pb-5 text-center">Détail du produit {{ product.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -14,6 +14,16 @@
             <tr>
                 <th>Name</th>
                 <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    <img src= "{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[4].name )}}"/>
+                    <img src= "{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[3].name )}}"/>
+                    <img src= "{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[2].name )}}"/>
+                    <img src= "{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[1].name )}}"/>
+                    <img src= "{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[0].name )}}"/>
+                </td>
             </tr>
             <tr>
                 <th>Slug</th>
@@ -33,7 +43,7 @@
             </tr>
             <tr>
                 <th>Price</th>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price|number_format(2, ',', ' ') }}</td>
             </tr>
             <tr>
                 <th>Reference</th>
@@ -45,18 +55,21 @@
             </tr>
             <tr>
                 <th>Reduction</th>
-                <td>{{ product.reduction }}</td>
+                <td>{{ product.reduction|number_format(2, ',', ' ') }}</td>
             </tr>
             <tr>
                 <th>PriceSold</th>
-                <td>{{ product.priceSold }}</td>
+                <td>{{ product.priceSold|number_format(2, ',', ' ') }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('admin_product_list') }}">back to list</a>
+    <div class="row">
+		<div class="col-12 text-end my-3">
+			<a href="{{ path('admin_product_list') }}" class="btn btn-outline-danger me-3">Retourner à l'accueil</a>
+			<button class="btn btn-outline-success">Modifier <a href="{{ path('admin_product_edit', {'id': product.id}) }}"></a></button>
+		</div>
+	</div>
 
-    <a href="{{ path('admin_product_edit', {'id': product.id}) }}">edit</a>
 
-    {{ include('Admin/product/_delete_form.html.twig') }}
 {% endblock %}

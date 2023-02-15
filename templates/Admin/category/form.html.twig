@@ -5,7 +5,7 @@ category{% endblock %}
 
 {% block body %}
 
-<h1 class="mb-5">{{ app.request.attributes.get('_route') == 'create_category' ? 'Créer' : 'Modifier' }} une categorie
+<h1 class="mb-5 text-center">{{ app.request.attributes.get('_route') == 'create_category' ? 'Créer' : 'Modifier' }} une categorie
 </h1>
 
 
@@ -39,7 +39,7 @@ category{% endblock %}
 
 
     <div class="row">
-        <div class="my-3 text-center">
+        <div class="col-12 text-end my-3">
             <a href="{{ path('admin_category')}}" class="btn btn-outline-danger me-3">Annuler</a>
             <button class="btn btn-success">{{ app.request.attributes.get('_route') == 'create_category' ? 'Créer' :
                 'Modifier' }} </button>
