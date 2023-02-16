@@ -101,5 +101,13 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findRandom(int $value)
+    {
+        $db = $this->getEntityManager()->getConnection();
+        $req = $db->prepare('SELECT id FROM product ORDER BY rand() LIMIT ' . $value);
+        $results = $req->executeQuery();
+        return $results->fetchAllAssociative();
+    }
+
     
 }

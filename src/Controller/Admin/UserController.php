@@ -17,7 +17,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
-    #[Route('/admin102/users', name: 'admin_users')]
+    #[Route('/admin1025/user', name: 'admin_users')]
     public function index(AddressRepository $addressRepository, UserRepository $userRepository): Response
     {
         $addresses = $addressRepository->findAll();
@@ -29,7 +29,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/admin102/user/create', name: 'admin_user_create')]
+    #[Route('/admin1025/user/create', name: 'admin_user_create')]
     public function new(ManagerRegistry $managerRegistry, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserRepository $userRepository, AddressRepository $addressRepository): Response
     {
 
@@ -106,7 +106,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/admin102/user/{id}', name: 'admin_user_show')]
+    #[Route('/admin1025/user/{id}', name: 'admin_user_show')]
     public function show($id, AddressRepository $addressRepository, UserRepository $userRepository): Response
     {
         $address = $addressRepository->find($id);

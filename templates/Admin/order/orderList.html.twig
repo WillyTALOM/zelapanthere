@@ -1,0 +1,48 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block title %}commandes{% endblock %}
+
+{% block body %}
+
+    <h1 class="pb-5">Liste des commandes</h1>
+
+    <table class="table table-hover table-sm text-center align-middle text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>N°</th>
+                <th>Référence</th>
+                <th>Montant</th>
+                <th>Transporteur</th>
+                <td>Client</td>
+                <td>Statut</td>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders|reverse %}
+                <tr>
+                    <td>{{ loop.revindex }}</td>
+                    <td>{{ order.reference }}</td>
+                    <td>{{ order.amount|number_format(2, ',', ' ') }} €</td>
+                    <td>{{ order.carrier.name }}</td>
+                    <td>{{ order.user.firstName ~ ' ' ~ order.user.lastName|upper }}</td>
+                    <td>{{ order.status.status }}</td>
+                     <td class="text-start"><img src="{{ asset('img/product/' ~ product.img1) }}" alt="image principale du jeu {{ product.name }}" class="pe-3"> {{ product.name }}</td>
+                    <td>{{ product.price|number_format(2, ',', ' ') }} €</td>
+                    {# <td>{{ product.category.name }}</td> #}
+                    <td>
+                        <a href="{{ path('admin_order_update', {'order': order.id}) }}"><i class="bi bi-pencil-square text-primary"></i></a> 
+                        <a href="#"><i class="bi bi-trash3 text-danger"></i></a>
+                    </td>
+                </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+
+    <div class="text-end mt-4">
+        <a href="#" class="btn btn-outline-success button-shrink">Créer une commande</a>
+    </div>
+    
+{% endblock %}
+
+

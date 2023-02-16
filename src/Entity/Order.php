@@ -37,6 +37,13 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?User $user = null;
 
+    #[ORM\ManyToOne(inversedBy: 'orders')]
+    private ?OrderState $orderState = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Address $billingAddress = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -145,6 +152,30 @@ class Order
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getOrderState(): ?OrderState
+    {
+        return $this->orderState;
+    }
+
+    public function setOrderState(?OrderState $orderState): self
+    {
+        $this->orderState = $orderState;
+
+        return $this;
+    }
+
+    public function getBillingAddress(): ?Address
+    {
+        return $this->billingAddress;
+    }
+
+    public function setBillingAddress(?Address $billingAddress): self
+    {
+        $this->billingAddress = $billingAddress;
 
         return $this;
     }

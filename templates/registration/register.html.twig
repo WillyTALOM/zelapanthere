@@ -7,15 +7,84 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <h1>Inscrivez-vous</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.firstName, {
+		label: 'Prénom'
+		}) }}
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.lastName, {
+		label: 'Nom'
+		}) }}
+
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.phone, {
+		label: 'Numéro de téléphone'
+		}) }}
+
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.email) }}
+
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.plainPassword.first, {
+		label: 'Mot de passe'
+		}) }}
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.plainPassword.second, {
+		label: 'Répétez mot de passe'
+		}) }}
+
+
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.showPassword, {
+		'label': 'afficher le mot de passe'
+		}) }}
+
+	</div>
+
+</div>
+
+<div class="row mb-5">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(registrationForm.agreeTerms, {
+		label: 'J\'accepte les Conditions Générales d\'Utilisation'
+
+		}) }}
+
+		<button type="submit" class="btn btn-outline-success">S'inscrire</button>
+
+
+	</div>
+</div>
+
+
+{{ form_end(registrationForm) }}
 {% endblock %}

@@ -4,12 +4,15 @@
     {{ product.name }}
 {% endblock %}
 
+
+{% block h1 %}Détails de
+    {{ product.name }}
+{% endblock %}
+
+
 {% block body %}
-    <main class="container px-4 px-lg-5 my-5">
+    <div class="container pb-5  mb-5">
         <section class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-12">
-                <h1>{{ product.name }}</h1>
-            </div>
             <div class="col-6">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -46,5 +49,5 @@
                 {% endif %}
             </div>
         </section>
-    </main>
+    </div>
 {% endblock %}

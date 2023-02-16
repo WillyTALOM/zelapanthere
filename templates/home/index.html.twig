@@ -43,7 +43,7 @@
 					<div class="text-center">
 						<a href="{{ path('product_show', {slug: product.slug}) }}"
 							class="card-link btn btn-outline-primary">Détails</a>
-						<a href="#"
+						<a href="{{ path('cart_add', {'id' : product.id }) }}"
 							class="card-link btn btn-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}">
 							<i class="bi bi-cart-plus-fill"></i></a>
 						<a href="#" class="card-link btn btn-danger"> <i

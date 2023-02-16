@@ -11,9 +11,9 @@
                 {# <a class="nav-link" href="#">Catégories</a> #}
                 <a class="nav-link" href="#">Produits</a>
                 {# <a class="nav-link" href="{{ path('user_index') }}">Mon compte ({{ app.user.firstName }})</a> #}
-                <a class="nav-link" href="#">Connexion</a>               
-                <a class="nav-link" href="{{ path('contact')}}">Contact</a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ path('register') }}">Connexion</a>               
+                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                <a class="nav-link" href="{{ path('cart') }}">
                     Panier 
                         <span class="badge rounded-pill text-bg-secondary">
                             {# {{ render(controller('App\\Controller\\CartController::getNbProducts')) }} #}

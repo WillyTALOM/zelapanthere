@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}panier{% endblock %}
+
+{% block description %}Consultez et modifiez votre panier {{ contact_company }}{% endblock %}
+
+{# {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/cart.css') }}">{% endblock %} #}
+
+{% block h1 %}Panier{% endblock %}
+
+
+{% block body %}
+
+ <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark text-center align-middle">
+                        <tr>
+                            <th>DÉSIGNATION</th>
+                            <th>PRIX UNITAIRE</th>
+                            <th>QUANTITÉ</th>
+                            <th>SOUS-TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in cart %}
+                            <tr>
+                                <td class="text-center">
+                                    <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ element.product.image[4].name )}} " alt="image principale {{ element.product.name }}"> 
+                                    {{ element.product.name }} 
+                                    <a href="{{ path('cart_delete', {'id': element.product.id}) }}" class="text-danger"><i class="bi bi-x-circle"></i></a>
+                                </td>
+                                {% if element.product.reduction > 0 %}
+                                <td class="text-center">{{ element.product.priceSold|number_format(2, ',', ' ') }}
+                                  €
+                                </td>
+                                {% else %}
+
+                                <td class="text-center">{{ element.product.price|number_format(2, ',', ' ') }}
+                                  €
+                                </td>
+                                {% endif %}
+                                <td class="text-center">
+                                    <a href="{{ path('cart_remove', {'id': element.product.id}) }}"><i class="bi bi-dash-square text-danger"></i></a>
+                                    <span class="mx-2">{{ element.quantity }}</span>
+                                    <a href="{{ path('cart_add', {'id': element.product.id}) }}"><i class="bi bi-plus-square text-success"></i></a>
+                                </td>
+                                {% if element.product.reduction > 0 %}
+                                <td class="text-center">{{ (element.product.priceSold * element.quantity)|number_format(2, ',', ' ')
+                                  }}
+                                  €</td>
+
+                                {% else %}
+
+                                <td class="text-center">{{ (element.product.price * element.quantity)|number_format(2, ',', ' ') }}
+                                  €</td>
+                                {% endif %}
+
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center">Votre panier est vide</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot class="table-dark">
+                        <tr>
+                            <th colspan="3" class="text-end">TOTAL :</th>
+                            <th class="text-center">{{ total|number_format(2, ',', ' ') }} €</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-12 text-end">
+                <a href="{{ path('cart_clear') }}" class="btn btn-outline-danger me-3">Vider le panier</a>
+                <a href="{{ path('cart_validation') }}" class="btn btn-outline-success">Valider le panier</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row my-5">
+            {% if app.user %}
+                <h2>Vous pourriez aussi aimer</h2>
+            {% else %}
+                <h2>Derniers produits</h2>
+            {% endif %}
+            {% for featuredProduct in featuredProducts %}
+                <div class="col-md-6 col-lg-4 col-xl-3 p-3">
+                    <div class="card text-center">                   
+                        <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ featuredProduct.image[4].name) }} " class="card-img-top p-3" alt="image principale du jeu {{ featuredProduct.name }}">
+                        {% if featuredProduct.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
+                            <span class="new_product">Nouveauté</span>
+                        {% endif %}
+                        {% if featuredProduct.quantity >= 5 and featuredProduct.quantity > 0 %}
+                            <span class="last_products">Derniers produits</span>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ featuredProduct.name }}</h5>
+                        </div>
+                        <div class="card-body pt-0">
+                            <a href="{{ path('product_show', {'slug': featuredProduct.slug}) }}" class="card-link btn btn-outline-primary">Détails</a>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <a href="{{ path('favorite_add', {'id': featuredProduct.id}) }}" class="card-link btn btn-danger"><i class="bi bi-heart-fill"></i></a>
+                            {% endif %}
+                            <a href="{{ path('cart_add', {'id': featuredProduct.id}) }}" class="card-link btn btn-{{ featuredProduct.quantity != 0 ? 'success' : 'danger disabled' }}"><i class="bi bi-cart-plus-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="{{ asset('js/cart.js') }}"></script>
+
+{% endblock %}

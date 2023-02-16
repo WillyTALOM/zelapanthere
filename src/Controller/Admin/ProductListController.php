@@ -92,10 +92,6 @@ class ProductListController extends AbstractController
               
             //      }
                  
-                 
-  
-                  
-  
 
             // }
            
@@ -119,15 +115,18 @@ class ProductListController extends AbstractController
 
 
     #[Route('/admin1025/{id}/edit', name: 'admin_product_edit' , methods: ['GET', 'POST'])]
-    public function edit(Product $product, Request $request, ProductRepository $productRepository): Response
+    public function edit(Product $product, Request $request, ProductRepository $productRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+             $product->setSlug(strtolower($slugger->slug($product->getName())));
+             $product->setPriceSold($product->getPrice() * (1 - ($product->getReduction() / 100)));
             $productRepository->save($product, true);
 
             return $this->redirectToRoute('admin_product_list', [], Response::HTTP_SEE_OTHER);
+           
         }
 
         return $this->render('Admin/product/form.html.twig', [
