@@ -153,6 +153,16 @@ class CartController extends AbstractController
 
                 $manager->persist($address);
 
+                $email = $cartValidationInfoForm['email']->getData();
+
+                if ($email){
+                  
+                return $this->redirectToRoute('login');
+                $this->addFlash('danger', 'Vous possez déja un compte, merci de vous connecter pour passer votre commande');
+                
+
+                } else{
+
                 $user = new User();
                 $user->setEmail($cartValidationInfoForm['email']->getData());
                 $user->setLastName($cartValidationInfoForm['lastName']->getData());
@@ -161,7 +171,7 @@ class CartController extends AbstractController
                 $user->addAddress($address);
                 $user->setCreatedAt(new DateTimeImmutable());
                 $user->setPassword($slugger->slug($cartValidationInfoForm['lastName']->getData() . 12345678));
-
+                }    
                 $manager->persist($user);
                 
                 $order = new Order(); // génère la commande en base de données

@@ -4,50 +4,55 @@
 
 {% block title %}validation panier{% endblock %}
 
-{% block breadcrump %} / <a href="{{ path('cart') }}">Panier</a> / Validation{% endblock %}
+{# {% block breadcrump %} / <a href="{{ path('cart') }}">Panier</a> / Validation{% endblock %} #}
 
 {% block h1 %}Validation{% endblock %}
 
 {% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-12 ">
+			<h2>Récapitulatif du panier</h2>
+			<table class="table table-hover align-middle">
+				<thead class="table-dark  align-middle">
+					<tr>
+						<th>NOM</th>
+						<th class="text-center">QTÉ</th>
+						<th class="text-end">SOUS-TOTAL</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for line in cart %}
+						<tr>
+							<td><img src="{{ asset('assets/uploads/products/mini/300x300-' ~ line.product.image[4].name )}} " alt="image principale {{ line.product.name }}">{{ line.product.name }}</td>
+							<td class="text-center">{{ line.quantity }}</td>
+							{% if line.product.reduction > 0 %}
+							<td class="text-end">{{ (line.product.priceSold * line.quantity)|number_format(2, ',', ' ') }} €</td>
+							{% else %}
+							<td class="text-center">{{ (line.product.price * line.quantity)|number_format(2, ',', ' ') }} €</td>
+							{% endif %}
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr class="table-dark text-end">
+						<th colspan="2">TOTAL :</th>
+						<th>{{ total|number_format(2, ',', ' ') }} €</th>
+					</tr>
+				</tfoot>
+			</table>
+			
+		</div>
+	</div>	
 
-    <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0 px-lg-5 ">
-        <h2>Récapitulatif du panier</h2>
-        <table class="table table-hover align-middle">
-            <thead class="table-dark  align-middle">
-                <tr>
-                    <th>NOM</th>
-                    <th class="text-center">QTÉ</th>
-                    <th class="text-end">SOUS-TOTAL</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for line in cart %}
-                    <tr>
-                        <td><img src="{{ asset('assets/uploads/products/mini/300x300-' ~ line.product.image[4].name )}} " alt="image principale {{ line.product.name }}">{{ line.product.name }}</td>
-                        <td class="text-center">{{ line.quantity }}</td>
-						{% if line.product.reduction > 0 %}
-                        <td class="text-end">{{ (line.product.priceSold * line.quantity)|number_format(2, ',', ' ') }} €</td>
-						{% else %}
-						<td class="text-center">{{ (line.product.price * line.quantity)|number_format(2, ',', ' ') }} €</td>
-						{% endif %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr class="table-dark text-end">
-                    <th colspan="2">TOTAL :</th>
-                    <th>{{ total|number_format(2, ',', ' ') }} €</th>
-                </tr>
-            </tfoot>
-        </table>
-        
-    </div>
-
-    <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0 px-lg-5">
-        <h2>Livraison</h2>
-        {{ form_start(cartValidationInfoForm) }}
+    <div class="col-12">
+        <div class="row">
+			<div class="col-12 text-center">
+				<h2 class="my-5">Livraison</h2>
+			</div>
+		</div>
 		
-
+        {{ form_start(cartValidationInfoForm) }}
 		<div class="row">
 			<div class="col-6">
 				{{ form_label(cartValidationInfoForm.firstName, 'Prénom') }}
@@ -69,7 +74,7 @@
 				}) }}
 				{{ form_help(cartValidationInfoForm.lastName) }}
 			</div>
-			<div class="col-3">
+			<div class="col-6">
 				{{ form_row(cartValidationInfoForm.email, {
 				'label': 'Email',
 				'attr': {
@@ -86,7 +91,7 @@
 				}) }}
 			</div>
 
-			<div>
+			<div class="col-6">
 				{{ form_row(cartValidationInfoForm.address , {
 				'label': 'Adresse',
 				'attr': {
@@ -94,9 +99,9 @@
 				}
 				}) }} 
 			</div>
-			<div class="col-3">
+			<div class="col-6">
 				{{ form_row(cartValidationInfoForm.additional , {	
-				'label': 'Adresse complémentaire',
+				'label': 'Complémentaire',
 				'attr': {
 					'novalidate': 'novalidate',
 					'placeholder': ''
@@ -104,7 +109,7 @@
 				}) }}
 			</div>
 
-			<div class="col-3">
+			<div class="col-6">
 				{{ form_row(cartValidationInfoForm.zip , {
 				'label': 'Code postale',
 				'attr': {
@@ -114,7 +119,7 @@
 
 			</div>
 
-			<div class="col-3">
+			<div class="col-6">
 				{{ form_row(cartValidationInfoForm.city , {
 				'label': 'Ville',
 				'attr': {
@@ -123,7 +128,7 @@
 				}) }}
 			</div>
 
-			<div class="col-3">
+			<div class="col-7">
 				{{ form_row(cartValidationInfoForm.country , {
 				'label': 'Pays',
 				'attr': {
@@ -132,11 +137,12 @@
 				}) }}
 			</div> 
 
-			<div class="col-3">
+			<div class="col-12">
 				{{ form_row(cartValidationInfoForm.carrier, {
                 'label': 'Transporteur'
             }) }}
 			</div> 
+		</div>
 	
 	
 			<div class="row">
@@ -148,6 +154,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 
 	{{ form_end(cartValidationInfoForm) }}
     
