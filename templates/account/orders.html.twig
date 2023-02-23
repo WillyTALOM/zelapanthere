@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+{% endblock %}
+
+
+{% block h1 %}Mes commandes{% endblock %}
+
+{% block body %}
+
+
+{% if orders|length == 0 %}
+<hr>
+<p class="text-center">
+    Vous n'avez pas encore passé de commande sur Ma super boutique.
+</p>
+{% else %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <table class="table align-middle">
+                <thead class="table-dark text-center align-middle">
+                    <tr>
+                        <th>Référence</th>
+                        <th>Statut</th>
+                        <th>Passée le</th>
+                        <th>Produit(s)</th>
+                        <th>Adresse de Livraison</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td class="text-center">{{ order.reference }}</td>
+                        <td class="text-center">
+                        {% if order.orderState.name == 'payé' %}
+                            Paiement accepté
+                            {% elseif order.orderState.name == 'attente paiement' %}
+                            La commande est annulée
+                            {% elseif order.orderState.name == 'en préparation' %}
+                            La commande est en préparation
+                            {% elseif order.orderState.name == 'Livraison' %}
+                            La commande est en cours de livraison
+                            {% elseif order.orderState.name == 'Livré' %}
+                            Commande livré                        
+                        {% endif %}
+                        </td>
+                        <td class="text-center">{{ order.createdAt|date('d/m/Y') }}</td>
+                        <td class="text-center">{{ order.orderDetails|length }}</td>
+                        <td class="text-center">{{order.billingAddress}}</td>
+                        <td class="text-center">{{ order.getAmount|number_format(2, ',', '.') }} €</td>
+                        <td class="text-center"><a
+                                href="{{ path('user_account_order_details', { 'reference' : order.reference }) }} ">Voir
+                                ma
+                                commande</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-end">
+        <a class="btn btn-outline-dark" href="{{ path('user_account', {'id':app.user.id}) }}">Retour</a>
+    </div>
+
+
+
+{% endif %}
+{# <div class="pagination-container">
+    {% do orders.setPageRange(1) %}
+    {{ knp_pagination_render(orders, '__partials/pagination.html.twig') }}
+
+</div> #}
+
+</div>
+{% endblock %}

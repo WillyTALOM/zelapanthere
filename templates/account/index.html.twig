@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Mon Compte{% endblock %}
+
+{% block h1 %}{% if is_granted('ROLE_ADMIN') %}
+<small><a href="{{path('admin_home')}}">Vous êtes un administrateur, accéder à l'espace administrateur </a></small><br />
+{% endif %}Bienvenue {{ app.user.firstname }} dans votre espace.{% endblock %}
+
+{% block body %}
+
+
+<div class="text-center">
+    <p>C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles.</p>
+</div>
+<hr>
+
+<hr>
+<div class="row ">
+
+    <div class="col-md-4 text-center account-item ">
+        <h3>Mot de passe</h3>
+        <br />
+        <div class="text-center my-4">
+            <a class="btn btn-outline-success" href="#">Modifier mon mot de passe</a>
+        </div>
+    </div>
+
+
+    <div class="col-md-4 text-center account-item ">
+        <h3>Mes adresses</h3>
+        {% if app.user.addresses|length == 0 %}
+        <p class="text-center">
+            Vous n'avez pas encore ajouté d'adresse dans votre compte client. Pour en ajouter une, veuillez <a class="btn btn-outline-success"
+                href="{{ path('user_account_address_add', { 'id' : app.user.id }) }}">cliquer ici</a>.
+        </p>
+        {% else %}
+        <div class="row text-center">
+            {% for address in app.user.addresses|slice(0,2) %}
+            <div>
+                {{address.address ~ ' ' ~ address.additional ~ ' ' ~ address.zip ~ ' ' ~ address.country}}
+
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center my-4">
+
+            <a class="btn btn-outline-success" href="{{ path('user_account_address', {'id' : app.user.id}) }}">Gérer mes adresses</a>
+        </div>
+        {% endif %}
+    </div>
+
+
+    <div class="col-md-4 text-center account-item ">
+        <h3>Mes commandes</h3>
+        {% if orders|length == 0 %}
+        <p class="text-center">
+            Vous n'avez pas encore commandé chez nous
+        </p>
+        {% else %}
+        <div class="row text-center">
+            {% for order in orders|slice(0,2) %}
+            <div>
+                {{ order.reference }}
+
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="text-center my-4">
+            <a class="btn btn-outline-success" href="{{ path('user_account_orders', {'id' : app.user.id}) }}">Mes commandes</a>
+        </div>
+    </div>
+
+</div>
+<hr>
+{% endblock %}

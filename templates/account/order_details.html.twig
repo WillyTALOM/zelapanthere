@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Détail de ma commande
+{% endblock %}
+
+{% block h1 %}
+  Détail de ma commande
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid">
+    <strong>Statut de la commande :</strong>
+    {% if order.orderState.name == 'payé' %}
+      Paiement accepté
+    {% elseif order.orderState.name == 'attente paiement' %}
+      La commande est annulée
+    {% elseif order.orderState.name == 'en préparation' %}
+      La commande est en préparation
+    {% elseif order.orderState.name == 'Livraison' %}
+      La commande est en cours de livraison
+    {% elseif order.orderState.name == 'Livré' %}
+      Commande livré 
+    {% endif %}
+    <br />
+    <strong>Commande passée le :</strong>
+    {{ order.createdAt|date('d/m/Y') }}<br />
+    <strong>Référence de ma commande :</strong>
+    <small>{{ order.reference }}</small><br />
+    <strong>Transporteur choisi :</strong>
+    {{ order.carrier.name }}
+    <hr />
+    <strong>Détails:</strong>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-hover align-middle">
+          <thead class="table-dark text-center align-middle">
+            <tr>
+              <th>
+                Produit
+              </th>
+              <th>
+                Quantité
+              </th>
+              <th>
+                Prix unitaire
+              </th>
+              <th>
+                Sous-Total
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for orderDetail in order.orderDetails %}
+              <tr>
+                <td class="text-center">
+                  <img src="{{
+                    asset(
+                      'assets/uploads/products/mini/300x300-'
+                        ~ orderDetail.productId.image[4].name
+                    )
+                    }}"
+                    alt="image principale {{ orderDetail.productId.name }}" />
+                  {{ orderDetail.productId.name }}
+                </td>
+                <td class="text-center">
+                  {{ orderDetail.quantity }}
+                </td>
+                {% if orderDetail.productId.reduction > 0 %}
+                  <td class="text-center">
+                    {{
+                      orderDetail.productId.priceSold|number_format(2, ',', ' ')
+                    }}
+                    €
+                  </td>
+                {% else %}
+                  <td class="text-center">
+                    {{ orderDetail.productId.price|number_format(2, ',', '.') }}
+                    €
+                  </td>
+                {% endif %}
+
+                {% if orderDetail.productId.reduction > 0 %}
+                  <td class="text-center">
+                    {{
+                      (orderDetail.productId.priceSold
+                        * orderDetail.quantity)|number_format(2, ',', '.')
+                    }}
+                    €
+                  </td>
+                {% else %}
+                  <td class="text-center">
+                    {{
+                      (orderDetail.productId.price
+                        * orderDetail.quantity)|number_format(2, ',', '.')
+                    }}
+                    €
+                  </td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="">
+    <strong>Sous-total :</strong>
+    {{ (order.amount - order.carrier.price)|number_format(2, ',', '.') }}
+    €<br />
+    <strong>Livraison :</strong>
+    {{ order.carrier.price|number_format(2, ',', '.') }}
+    €<br />
+    <strong>Total :</strong>
+    {{ order.amount|number_format(2, ',', '.') }}
+    €
+  </div>
+  </div>
+  
+
+  <div class="text-center my-5">
+    <a class="btn btn-dark"
+      href="{{
+      path(
+        'user_account_orders',
+        {
+          id: app.user.id
+        }
+      )
+      }}">
+      Retour
+    </a>
+    {# <a href="{{ path('receipt_pdf', {'reference' : order.reference}) }}" class="btn btn-success ">Télécharger la
+		        facture</a> #}
+  </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}{{ app.request.attributes.get('_route') == 'user_account_address_add' ? 'création' : 'modification' }}
+une adresse
+{% endblock %}
+
+{% block h1 %}{{ app.request.attributes.get('_route') == 'user_account_address_add' ? 'Créer' : 'Modifier' }}
+une adresse
+{% endblock %}
+
+
+{% block body %}
+
+
+{{ form_start(addressform) }}
+<div class="row">
+
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(addressform.address,{
+		'label': 'Adresse',
+		}
+		) }}</div>
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(addressform.additional ,{
+		'label': 'Adresse complémentaire',
+		}) }}</div>
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(addressform.zip ,{
+		'label': 'Code postale',
+		}) }}</div>
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(addressform.city ,{
+		'label': 'Ville',
+		}) }}</div>
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		{{ form_row(addressform.country, {
+		'label': 'Pays',
+		'attr': {
+		'placeholder': '--Selectioné--'
+		}
+		}) }}</div>
+
+</div>
+
+<div class="row mb-4">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+		<button class="btn btn-success">{{ app.request.attributes.get('_route') == 'user_account_address_add' ? 'Créer'
+			:
+			'Modifier'
+			}}
+		</button>
+
+		<a class="btn btn-dark" href="{{ path('user_account_address' , {'id': app.user.id}) }}">Annuler</a>
+	</div>
+</div>
+{{ form_end(addressform) }}
+{% endblock %}

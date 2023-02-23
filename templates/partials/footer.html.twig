@@ -7,11 +7,11 @@
                 <li><a href="{{ path('home') }}" class="text-light">Accueil</a></li>
                 <li><a href="#" class="text-light">Produits</a></li>
                 {% if app.user %}
-                    <li><a href="#" class="text-light">Déconnexion</a></li>
+                    <li><a href="{{ path('logout') }}" class="text-light">Déconnexion</a></li>
                 {% else %}
-                    <li><a href="#" class="text-light">Connexion</a></li>
+                    <li><a href="{{ path('login') }}" class="text-light">Connexion</a></li>
                 {% endif %}
-                <li><a href="#" class="text-light">Panier</a></li>
+                <li><a href="{{ path('cart') }}" class="text-light">Panier</a></li>
             </ul>
         </div>
         <div class="col-md-6 col-lg-4 order-1 order-md-3 order-lg-2 mx-md-auto my-auto pb-5 py-md-5 px-lg-5">

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes adresses{% endblock %}
+
+{% block h1 %}Mes adresses{% endblock %}
+
+{% block body %}
+
+<div class="text-center"><p>C'est dans cet espace que vous allez pouvoir gérer toutes vos adresses.</p></div>
+
+
+
+
+    {% if app.user.addresses|length == 0 %}
+    <p class="text-center">
+        Vous n'avez pas encore ajouté d'adresse dans votre compte client. Pour en ajouter une, veuillez <a class="btn btn-outline-success"
+            href="{{ path('user_account_address_add', { 'id' : app.user.id }) }}">cliquer ici</a>.
+
+    </p>
+    {% else %}
+     {% for address in app.user.addresses %}
+    <div class="container">
+        <div class="row">         
+            <div class="col-12 my-2">
+                <div class="card " >
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ address.address }}</h5>
+                        <p class="card-text text-center">
+                            {{ address.additional }}<br />
+                            {{ address.zip}} - {{ address.city }} - {{ address.country }}
+                        </p>
+                        <div class="text-center">
+                            <a href="{{ path('user_account_address_update', { 'id' : address.id }) }}"><i
+                                    class="bi bi-pencil-square text-primary"></i></a> | 
+                            <a href="{{ path('user_account_address_delete', { 'id' : address.id }) }}"><i
+                                    class="bi bi-trash3 text-danger"></i></a>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+    <div class="text-center my-5">
+        <a class="btn btn-outline-success" href="{{ path('user_account_address_add', { 'id' : app.user.id }) }}">Créer</a>
+        <a class="btn btn-outline-dark" href="{{ path('user_account',{ 'id' : app.user.id }) }}">Retour</a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

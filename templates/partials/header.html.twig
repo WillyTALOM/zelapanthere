@@ -11,7 +11,7 @@
                 {# <a class="nav-link" href="#">Catégories</a> #}
                 <a class="nav-link" href="#">Produits</a>
                 {% if is_granted('ROLE_ADMIN') %}
-                <a class="nav-link" href="#">Mon compte ({{ app.user.lastName }})</a>
+                <a class="nav-link" href="{{ path('user_account') }}">Mon compte ({{ app.user.lastName }})</a>
                 {% endif %}
                 {% if app.user %}
 				<a class="nav-link" href="{{ path('logout') }}">Deconnexion</a>
