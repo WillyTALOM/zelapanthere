@@ -45,13 +45,13 @@ une adresse
 
 <div class="row mb-4">
 	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-		<button class="btn btn-success">{{ app.request.attributes.get('_route') == 'user_account_address_add' ? 'Créer'
+		<button class="buttonb text-decoration-none ">{{ app.request.attributes.get('_route') == 'user_account_address_add' ? 'Créer'
 			:
 			'Modifier'
 			}}
 		</button>
 
-		<a class="btn btn-dark" href="{{ path('user_account_address' , {'id': app.user.id}) }}">Annuler</a>
+		<a class="buttonred text-decoration-none" href="{{ path('user_account_address' , {'id': app.user.id}) }}">Annuler</a>
 	</div>
 </div>
 {{ form_end(addressform) }}

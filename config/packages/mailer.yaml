@@ -1,5 +1,5 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
-        envelope:
-            recipients: ['no.reply1234500@gmail.com'] # envoie tous les mails à cette adresse
+        # envelope:
+        #     recipients: ['no.reply1234500@gmail.com'] # envoie tous les mails à cette adresse

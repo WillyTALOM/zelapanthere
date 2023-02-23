@@ -4,9 +4,13 @@
 
 {% block h1 %}Mes adresses{% endblock %}
 
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/base.css') }}">{% endblock %}
+
+
+
 {% block body %}
 
-<div class="text-center"><p>C'est dans cet espace que vous allez pouvoir gérer toutes vos adresses.</p></div>
+<div id="text" class="text-center"><p>C'est dans cet espace que vous allez pouvoir gérer toutes vos adresses.</p></div>
 
 
 
@@ -43,8 +47,8 @@
 
     {% endfor %}
     <div class="text-center my-5">
-        <a class="btn btn-outline-success" href="{{ path('user_account_address_add', { 'id' : app.user.id }) }}">Créer</a>
-        <a class="btn btn-outline-dark" href="{{ path('user_account',{ 'id' : app.user.id }) }}">Retour</a>
+        <a class="buttonb text-decoration-none" href="{{ path('user_account_address_add', { 'id' : app.user.id }) }}">Créer</a>
+        <a class="buttonred text-decoration-none"  href="{{ path('user_account',{ 'id' : app.user.id }) }}">Retour</a>
     </div>
 </div>
 {% endif %}

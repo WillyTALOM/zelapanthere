@@ -6,7 +6,7 @@
 
 {% block h1 %}{% if is_granted('ROLE_ADMIN') %}
 <small><a href="{{path('admin_home')}}">Vous êtes un administrateur, accéder à l'espace administrateur </a></small><br />
-{% endif %}Bienvenue {{ app.user.firstname }} dans votre espace.{% endblock %}
+{% endif %}Bienvenue {{ app.user.lastName }} dans votre espace.{% endblock %}
 
 {% block body %}
 
@@ -23,7 +23,7 @@
         <h3>Mot de passe</h3>
         <br />
         <div class="text-center my-4">
-            <a class="btn btn-outline-success" href="#">Modifier mon mot de passe</a>
+            <a class="custom-btn btn-4 text-decoration-none" href="#">Modifier mon mot de passe</a>
         </div>
     </div>
 
@@ -46,7 +46,7 @@
         </div>
         <div class="text-center my-4">
 
-            <a class="btn btn-outline-success" href="{{ path('user_account_address', {'id' : app.user.id}) }}">Gérer mes adresses</a>
+            <a class="custom-btn btn-4 text-decoration-none" href="{{ path('user_account_address', {'id' : app.user.id}) }}">Gérer mes adresses</a>
         </div>
         {% endif %}
     </div>
@@ -69,7 +69,7 @@
         </div>
         {% endif %}
         <div class="text-center my-4">
-            <a class="btn btn-outline-success" href="{{ path('user_account_orders', {'id' : app.user.id}) }}">Mes commandes</a>
+            <a class="custom-btn btn-4 text-decoration-none" href="{{ path('user_account_orders', {'id' : app.user.id}) }}">Mes commandes</a>
         </div>
     </div>
 

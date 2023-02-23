@@ -46,13 +46,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class,orphanRemoval: true, cascade: ['persist'])]
     private Collection $addresses;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class,orphanRemoval: true, cascade: ['persist'])]
     private Collection $orders;
 
     #[ORM\Column]
     private bool $isVerified = false;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Favorite::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Favorite::class,orphanRemoval: true, cascade: ['persist'])]
     private Collection $favorites;
 
     public function __construct()

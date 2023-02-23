@@ -31,7 +31,7 @@ class Order
     #[ORM\ManyToOne(inversedBy: 'orders')]
     private ?Carrier $carrier = null;
 
-    #[ORM\OneToMany(mappedBy: 'order_id', targetEntity: OrderDetails::class)]
+    #[ORM\OneToMany(mappedBy: 'order_id', targetEntity: OrderDetails::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $orderDetails;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]

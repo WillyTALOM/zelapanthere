@@ -4,11 +4,24 @@
 
 {% block title %}paiement{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/payement.css') }}">
+{% endblock %}
+
 {# {% block breadcrump %} / <a href="{{ path('cart') }}">Panier</a> / <a href="{{ path('cart_validation') }}">Validation</a> / Paiement{% endblock %} #}
 
 {% block h1 %}Paiement{% endblock %}
 
 {% block body %}
+<div class="container-fluid mt-3">
+    <div class="container">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+</div>
+
 
 {% endblock %}
 
@@ -16,6 +29,7 @@
 
     <script src="https://js.stripe.com/v3/"></script>
 
+    
     <script>
         var stripe = Stripe('pk_test_51Le0dIKhOJnU8RJKTxlD1GSQbBISYxcCnW8ErpW8x7YgDUO6pNoa59STGjXtyIe6z9XiEbmhhFSLrlFE30W7yxnK005y1q1ots'); // initialise Stripe
         stripe.redirectToCheckout({
