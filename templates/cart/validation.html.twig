@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block description %}Vaildez votre panier avant de procéder au paiement.{% endblock %}
+
+{% block title %}validation panier{% endblock %}
+
+{% block breadcrump %} / <a href="{{ path('cart') }}">Panier</a> / Validation{% endblock %}
+
+{% block h1 %}Validation{% endblock %}
+
+{% block body %}
+
+    <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0 px-lg-5 ">
+        <h2>Récapitulatif du panier</h2>
+        <table class="table table-hover align-middle">
+            <thead class="table-dark text-center align-middle">
+                <tr>
+                    <th>NOM</th>
+                    <th  class="text-center">QTÉ</th>
+                    <th  class="text-end">SOUS-TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in cart %}
+                    <tr>
+                        <td>{{ line.product.name }}</td>
+                        <td class="text-center">{{ line.quantity }}</td>
+                        <td class="text-end">{{ (line.product.price * line.quantity)|number_format(2, ',', ' ') }} €</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr class="table-dark text-end">
+                    <th colspan="2">TOTAL :</th>
+                    <th>{{ total|number_format(2, ',', ' ') }} €</th>
+                </tr>
+            </tfoot>
+        </table>
+        
+    </div>
+
+    <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0 px-lg-5">
+        <h2>Livraison</h2>
+        {{ form_start(cartValidationForm) }}
+            {{ form_row(cartValidationForm.billing_address, {
+                'label': 'Adresse de facturation'
+            }) }}
+            {{ form_row(cartValidationForm.delivery_address, {
+                'label': 'Adresse de livraison'
+            }) }}
+            {{ form_row(cartValidationForm.carrier, {
+                'label': 'Transporteur'
+            }) }}
+            <div class="row text-end m-5">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Payer</button>
+                </div>
+            </div>
+        {{ form_end(cartValidationForm) }}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}Gérer la liste de vos produits favoris{% endblock %}
+
+{% block title %}mes favoris{% endblock %}
+
+{# {% block breadcrump %} / <a href="{{ path('user_index') }}">Mon compte</a> / Mes favoris{% endblock %} #}
+
+{% block h1 %}Mes favoris{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        {% for favorite in app.user.favorites %}
+            <div class="col-md-6 col-lg-4 col-xl-3 p-3">
+                <div class="card text-center">
+                    <img src="{{ asset('img/product/' ~ favorite.product.img1) }}" class="card-img-top p-3" alt="image principale du jeu {{ favorite.product.name }}">
+                    {% if favorite.product.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
+                        <span class="new_product">Nouveauté</span>
+                    {% endif %}
+                    {% if favorite.product.quantity <= 5 and favorite.product.quantity > 0 %}
+                        <span class="last_products">Derniers produits</span>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ favorite.product.name }}</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <a href="{{ path('product_show', {'slug': favorite.product.slug}) }}" class="card-link btn btn-outline-primary">Détails</a>
+                        <a href="{{ path('favorite_delete', {'id': favorite.id}) }}" class="card-link btn btn-danger"><i class="bi bi-heartbreak"></i></a>
+                        <a href="{{ path('cart_add', {'id': favorite.product.id}) }}" class="card-link btn btn-{{ favorite.product.quantity != 0 ? 'success' : 'danger disabled' }}"><i class="bi bi-cart-plus-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">Vous n'avez pas ajouté de produits à vos favoris.</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

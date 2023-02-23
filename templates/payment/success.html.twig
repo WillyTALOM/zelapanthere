@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block description %}Votre paiement a été accepté.{% endblock %}
+
+{% block title %}paiement accepté{% endblock %}
+
+{# {% block breadcrump %} / Paiement accepté{% endblock %} #}
+
+{% block h1 %}Paiement accepté{% endblock %}
+
+{% block body %}
+
+    <div class="col-6 offset-3">
+        <p>Le paiement a été accepté et nous vous en remercions.</p>
+        <p>Vous pouvez télécharger votre facture en cliquant sur le lien suivant : <a href="#">télécharger ma facture</a>.</p>
+        <p>Pour toute demande concernant votre commande, vous pouvez nous contatcer via le <a href="{{ path('contact') }}">formulaire de contact</a>.</p>
+    </div>
+
+{% endblock %}

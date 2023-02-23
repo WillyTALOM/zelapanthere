@@ -1,0 +1,24 @@
+<h2>Statut de votre commande {{ contact_company }}</h2>
+
+<p>Votre commande est passée au statut "{{ order.orderState.name}}" !</p>
+
+<h2>Détails de la commande {{ order.reference }}</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Désignation</th>
+            <th>Quantité</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for orderDetail in order.orderDetails %}
+            <tr>
+                <td>{{ orderDetail.productId.name }}</td>
+                <td>{{ orderDetail.quantity }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{# <img src="{{ email.image('@images/logo.png') }}" alt="logo {{ contact_company }}"> #}

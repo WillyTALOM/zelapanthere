@@ -9,6 +9,8 @@ parameters:
      contact_email: "%env(CONTACT_EMAIL)%"
      carrier_image_dir: "%kernel.project_dir%/public/img/carrier"
      category_image_dir: "%kernel.project_dir%/public/img/category"
+     domain: '%env(DOMAIN)%'
+     stripe_secret_key: '%env(STRIPE_SECRET_KEY)%'
 
 
 services:

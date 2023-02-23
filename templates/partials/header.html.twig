@@ -10,18 +10,24 @@
                 <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                 {# <a class="nav-link" href="#">Catégories</a> #}
                 <a class="nav-link" href="#">Produits</a>
-                {# <a class="nav-link" href="{{ path('user_index') }}">Mon compte ({{ app.user.firstName }})</a> #}
-                <a class="nav-link" href="{{ path('register') }}">Connexion</a>               
+                {% if is_granted('ROLE_ADMIN') %}
+                <a class="nav-link" href="#">Mon compte ({{ app.user.lastName }})</a>
+                {% endif %}
+                {% if app.user %}
+				<a class="nav-link" href="{{ path('logout') }}">Deconnexion</a>
+				{% else %}
+				<a class="nav-link" href="{{ path('login') }}">Connexion</a>
+				{% endif %}               
                 <a class="nav-link" href="{{ path('contact') }}">Contact</a>
                 <a class="nav-link" href="{{ path('cart') }}">
                     Panier 
                         <span class="badge rounded-pill text-bg-secondary">
-                            {# {{ render(controller('App\\Controller\\CartController::getNbProducts')) }} #}
+                             {{ render(controller('App\\Controller\\CartController::getNbProducts')) }} 
                         </span>
                   
                 </a>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a class="nav-link" href="#">Admin</a>
+                    <a class="nav-link" href="{{ path('admin_home')}}">Admin</a>
                 {% endif %}
             </div>
             <div class="ms-lg-3">

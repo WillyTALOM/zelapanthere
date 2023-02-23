@@ -42,11 +42,11 @@
 				<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 					<div class="text-center">
 						<a href="{{ path('product_show', {slug: product.slug}) }}"
-							class="card-link btn btn-outline-primary">Détails</a>
+							class="card-link btn btn-outline-dark button-shrink">Détails</a>
 						<a href="{{ path('cart_add', {'id' : product.id }) }}"
-							class="card-link btn btn-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}">
+							class="card-link btn btn-outline-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}">
 							<i class="bi bi-cart-plus-fill"></i></a>
-						<a href="#" class="card-link btn btn-danger"> <i
+						<a href="#" class="card-link btn btn-outline-danger"> <i
 								class="bi bi-heart-fill"></i></a>
 					</div>
 				</div>

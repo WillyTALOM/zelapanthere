@@ -1,0 +1,161 @@
+{% extends "base.html.twig" %}
+
+{% block description %}Vaildez votre panier avant de procéder au paiement.{% endblock %}
+
+{% block title %}validation panier{% endblock %}
+
+{% block breadcrump %} / <a href="{{ path('cart') }}">Panier</a> / Validation{% endblock %}
+
+{% block h1 %}Validation{% endblock %}
+
+{% block body %}
+
+    <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0 px-lg-5 ">
+        <h2>Récapitulatif du panier</h2>
+        <table class="table table-hover align-middle">
+            <thead class="table-dark  align-middle">
+                <tr>
+                    <th>NOM</th>
+                    <th class="text-center">QTÉ</th>
+                    <th class="text-end">SOUS-TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in cart %}
+                    <tr>
+                        <td><img src="{{ asset('assets/uploads/products/mini/300x300-' ~ line.product.image[4].name )}} " alt="image principale {{ line.product.name }}">{{ line.product.name }}</td>
+                        <td class="text-center">{{ line.quantity }}</td>
+						{% if line.product.reduction > 0 %}
+                        <td class="text-end">{{ (line.product.priceSold * line.quantity)|number_format(2, ',', ' ') }} €</td>
+						{% else %}
+						<td class="text-center">{{ (line.product.price * line.quantity)|number_format(2, ',', ' ') }} €</td>
+						{% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr class="table-dark text-end">
+                    <th colspan="2">TOTAL :</th>
+                    <th>{{ total|number_format(2, ',', ' ') }} €</th>
+                </tr>
+            </tfoot>
+        </table>
+        
+    </div>
+
+    <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-0 px-lg-5">
+        <h2>Livraison</h2>
+        {{ form_start(cartValidationInfoForm) }}
+		
+
+		<div class="row">
+			<div class="col-6">
+				{{ form_label(cartValidationInfoForm.firstName, 'Prénom') }}
+				{{ form_errors(cartValidationInfoForm.firstName) }}
+				{{ form_widget(cartValidationInfoForm.firstName, {
+				'attr': {
+				'placeholder': 'Ex.: John'
+				}
+				}) }}
+				{{ form_help(cartValidationInfoForm.firstName) }}
+			</div>
+			<div class="col-6">
+				{{ form_label(cartValidationInfoForm.lastName, 'Nom') }}
+				{{ form_errors(cartValidationInfoForm.lastName) }}
+				{{ form_widget(cartValidationInfoForm.lastName, {
+				'attr': {
+				'placeholder': 'Ex.: Doe'
+				}
+				}) }}
+				{{ form_help(cartValidationInfoForm.lastName) }}
+			</div>
+			<div class="col-3">
+				{{ form_row(cartValidationInfoForm.email, {
+				'label': 'Email',
+				'attr': {
+				'placeholder': 'johndoe@gmail.fr'
+				}
+				}) }}
+			</div>
+			<div class="col-6">
+				{{ form_row(cartValidationInfoForm.phone, {
+				'label': 'Numéro de téléphone',
+				'attr': {
+				'placeholder': ''
+				}
+				}) }}
+			</div>
+
+			<div>
+				{{ form_row(cartValidationInfoForm.address , {
+				'label': 'Adresse',
+				'attr': {
+				'placeholder': 'Ex: 2 Rue du Général Leclerc'
+				}
+				}) }} 
+			</div>
+			<div class="col-3">
+				{{ form_row(cartValidationInfoForm.additional , {	
+				'label': 'Adresse complémentaire',
+				'attr': {
+					'novalidate': 'novalidate',
+					'placeholder': ''
+				}
+				}) }}
+			</div>
+
+			<div class="col-3">
+				{{ form_row(cartValidationInfoForm.zip , {
+				'label': 'Code postale',
+				'attr': {
+				'placeholder': 'Ex: 75001'
+				}
+				}) }}
+
+			</div>
+
+			<div class="col-3">
+				{{ form_row(cartValidationInfoForm.city , {
+				'label': 'Ville',
+				'attr': {
+				'placeholder': 'Ex: Paris'
+				}
+				}) }}
+			</div>
+
+			<div class="col-3">
+				{{ form_row(cartValidationInfoForm.country , {
+				'label': 'Pays',
+				'attr': {
+				'placeholder': '--- Selectionné ---'
+				}
+				}) }}
+			</div> 
+
+			<div class="col-3">
+				{{ form_row(cartValidationInfoForm.carrier, {
+                'label': 'Transporteur'
+            }) }}
+			</div> 
+	
+	
+			<div class="row">
+				<div class="col-12 text-end my-3">
+					<a href="{{ path('admin_users')}}" class="btn btn-outline-danger me-3">Annuler</a>
+					<button class="btn btn-outline-success">Valider
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{{ form_end(cartValidationInfoForm) }}
+    
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script> src="{{ asset('js/app.js') }}"</script>
+
+{% endblock %}

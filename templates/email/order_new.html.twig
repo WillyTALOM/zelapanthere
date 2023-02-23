@@ -1,0 +1,45 @@
+<h2>Vous avez une nouvelle commande à expédier</h2>
+
+<ul>
+    <li>Référence : {{ order.reference }}</li>
+    <li>Montant : {{ order.amount }}</li>
+    <li>Adresse de facturation : 
+        <ul>
+            <li>{{ order.user.firstName ~ ' ' ~ order.user.lastName|upper }}</li>
+            <li>{{ order.billingAddress.address }}</li>
+            {{ order.billingAddress.additional != null ? '<li>' ~ order.billingAddress.additional ~ '</li>' : null }}
+            <li>{{ order.billingAddress.zip ~ ' ' ~ order.billingAddress.city }}</li>
+            <li>{{ order.billingAddress.country }}</li>
+        </ul>
+    </li>
+    <li>Adresse de livraison : 
+        <ul>
+            <li>{{ order.user.firstName ~ ' ' ~ order.user.lastName|upper }}</li>
+            <li>{{ order.deliveryAddress.address }}</li>
+            {{ order.deliveryAddress.additional != null ? '<li>' ~ order.deliveryAddress.additional ~ '</li>' : null }}
+            <li>{{ order.deliveryAddress.zip ~ ' ' ~ order.deliveryAddress.city }}</li>
+            <li>{{ order.deliveryAddress.country }}</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Détails de la commande {{ order.reference }}</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Désignation</th>
+            <th>Quantité</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for orderDetail in order.orderDetails %}
+            <tr>
+                <td>{{ orderDetail.productId.name }}</td>
+                <td>{{ orderDetail.quantity }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{# <img src="{{ email.image('@images/logo.png') }}" alt="logo {{ contact_company }}"> #}

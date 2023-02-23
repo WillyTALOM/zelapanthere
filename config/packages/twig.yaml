@@ -2,15 +2,15 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes: ["bootstrap_5_layout.html.twig"]
     globals:
-        contact_website: "https://projet.willy-talom.com/"
-        contact_company: "vente de livres"
-        contact_address: "11 Boulevard Victor Schoelcher"
-        contact_zip: "77127"
-        contact_city: "LIEUSAINT"
-        contact_phone: "06 76 75 76 65"
-        contact_email: "no.reply1234500@gmail.com"
-        contact_siret: "00000000"
-        contact_country: "France"
+        contact_website: '%env(DOMAIN)%'
+        contact_company: '%env(COMPANY)%'
+        contact_address: '%env(ADDRESS)%'
+        contact_zip: '%env(ZIP)%'
+        contact_city: '%env(CITY)%'
+        contact_phone: '%env(PHONE)%'
+        contact_email: '%env(CONTACT_EMAIL)%'
+        contact_siret: '%env(SIRET)%'
+        contact_country: '%env(COUNTRY)%'
     paths:
         "public/img": images
 when@test:

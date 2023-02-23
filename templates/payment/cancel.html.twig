@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block description %}Votre paiement a été refusé.{% endblock %}
+
+{% block title %}paiement refusé{% endblock %}
+{# 
+{% block breadcrump %} / Paiement refusé{% endblock %} #}
+
+{% block h1 %}Paiement refusé{% endblock %}
+
+{% block body %}
+
+    <div class="col-6 offset-3">
+        <p>Le paiement a été refusé. Merci de réessayer ultérieurement.</p>
+        <p>Si le problème persiste, merci de contacter un administrateur du site via le <a href="{{ path('contact') }}">formulaire de contact</a>.</p>
+    </div>
+
+{% endblock %}

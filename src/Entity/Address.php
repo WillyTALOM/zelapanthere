@@ -41,6 +41,14 @@ class Address
         $this->orders = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getAddress() . ' ' .
+            $this->getAdditional() . ' ' . $this->getCity() . ' ' .
+            $this->getZip() . '-' .
+            $this->getCountry();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
