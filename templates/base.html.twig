@@ -62,17 +62,15 @@
 
         <main >
         
-             <div class="row">
-                <div class="col-3 ml-4 mt-3">
+             
                     {% for label, messages in app.flashes %}
                     {% for message in messages %}
-                    <div class="flash-{{ label }} bg-{{ label }} text-light rounded text-center">
-                        {{ message }}
-                    </div>
+                        <div class="flash-{{ label }} bg-{{ label }} text-light rounded">
+                            {{ message }}
+                        </div>
                     {% endfor %}
                     {% endfor %}
-                </div>
-		    </div>
+          
 
 
 		 <div class="row">

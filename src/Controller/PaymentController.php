@@ -113,7 +113,8 @@ class PaymentController extends AbstractController
         $cartService->clear(); // vide le panier
         
         $order->setOrderState($orderStatusRepository->findOneBy(['name' => 'payé'])); // définit le statut de la commande à "payé"
-        $managerRegistry->getManager()->persist($order);$managerRegistry->getManager();
+        $managerRegistry->getManager()->persist($order);
+        $managerRegistry->getManager();
         
         $email = (new TemplatedEmail()) // email pour informer l'admin de la nouvelle commande à expédier
             ->from(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Vente de livres'))

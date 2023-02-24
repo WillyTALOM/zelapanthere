@@ -1,9 +1,9 @@
-<h1>Bonjour {{user.firstName}}!</h1>
+<h1>Merci de confirmer votre adresse email</h1>
+
+<p>Bonjour {{user.firstName}}!</p>
 
 <p>
-    Merci de confirmer votre adresse email cliquant sur ce lien:
-    <br><br>
-    <a href="{{ signedUrl|raw }}">Confirmer mon email</a>.
+     Veuillez confirmer votre adresse email en cliquant sur le lien suivant : <a href="{{ signedUrl|raw }}">confirmer mon email</a>.
 
     Ce lien experera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
 </p>
@@ -11,5 +11,7 @@
 <p>
     Merci!
 </p>
+
+<p><i>L'équipe {{contact_company}}</i></p>
 
 {# <img src="{{ email.image('@images/logo/logo1.png') }}" alt="logo {{ contact_company }}"> #}

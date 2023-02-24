@@ -11,6 +11,7 @@ parameters:
      category_image_dir: "%kernel.project_dir%/public/img/category"
      domain: '%env(DOMAIN)%'
      stripe_secret_key: '%env(STRIPE_SECRET_KEY)%'
+     contact_emailN: '%env(CONTACT_EMAIL)%'
 
 
 services:

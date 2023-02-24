@@ -44,6 +44,7 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setCreatedAt(new DateTimeImmutable());
+            $user->setRoles(["ROLE_USER"]);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -52,7 +53,7 @@ class RegistrationController extends AbstractController
                 'verify_email', 
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address($this->getParameter('contact_email'), 'no'))
+                    ->from(new Address($this->getParameter('contact_email'), 'l\'univer de ze'))
                     ->to($user->getEmail())
                     ->subject('Confirmez votre adresse email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -64,11 +65,8 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            $this->addFlash('success', 'Votre compte a bien été créé. Avant de continuer, vous devez valider votre adresse mail en cliquant sur le lien dans le mail que vous avez reçu.');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -91,8 +89,8 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Votre email a bien été verifié.');
-
+        $this->addFlash('success', 'Votre adresse email a bien été vérifiée.');
+        
         return $this->redirectToRoute('home');
     }
 }
