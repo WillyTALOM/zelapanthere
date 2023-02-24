@@ -63,4 +63,12 @@ class OrderStateRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+        // public function(EntityRepository $entityRepository)
+        //  {
+        //     return $entityRepository->createQueryBuilder('a')
+        //     ->where('a.user = :val')
+        //      ->setParameter(':val', $this->security->getUser());
+        // }
 }

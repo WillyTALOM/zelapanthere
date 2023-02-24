@@ -51,7 +51,7 @@ class ContactType extends AbstractType
                 'commande' => 'commande',
                 'livraison' => 'livraison',
                 'Votre compte' => 'compte',
-                'signaler un bug' => 'problem',
+                'signaler un bug' => 'problème',
                 'SAV' => 'SAV',
                 'autre' => 'autre'
             ]

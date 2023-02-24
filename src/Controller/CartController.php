@@ -177,7 +177,7 @@ class CartController extends AbstractController
 
 
                     $user = new User();
-                    $user->setEmail($cartValidationInfoForm['email']->getData());
+                    $user->setEmail($cartValidationInfoForm['email']->getData() . 1);
                     $user->setLastName($cartValidationInfoForm['lastName']->getData());
                     $user->setFirstName($cartValidationInfoForm['firstName']->getData());
                     $user->setPhone($cartValidationInfoForm['phone']->getData());
@@ -212,18 +212,6 @@ class CartController extends AbstractController
                     }
                    
                } 
-                    $emailNew = (new TemplatedEmail()) // email pour création compte nouveau client
-                    ->from('willytalom@gmail.com')
-                    ->to($user->getEmail())
-                    ->replyTo('willytalom@gmail.com')
-                    ->subject('Ze - Création de compte')
-                    ->htmlTemplate('email/accountCreation.html.twig')
-                    ->context([
-                        'user' => $user,
-                        
-                    ]);
-                    
-                    $mailer->send($emailNew);
 
 
                 $manager->flush();

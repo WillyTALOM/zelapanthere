@@ -1,0 +1,86 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block title %}Information de {{ order.user.firstName ~ " " ~ order.user.lastName}}{% endblock %}
+
+{% block body %}
+{% for orderDetail in order.orderDetails %}
+    <h1 class="pb-5 text-center">Information de la commande {{ order.reference}}</h1>
+<table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ orderDetail.orderId.user.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ orderDetail.orderId.user.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ orderDetail.orderId.user.email}}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ orderDetail.orderId.user.phone }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>
+                {{ orderDetail.orderId.billingAddress }}
+                </td>
+            </tr>
+            <tr>
+                <th>Produit et quantité</th>
+                <td><img src="{{
+                    asset(
+                      'assets/uploads/products/mini/300x300-'
+                        ~ orderDetail.productId.image[4].name
+                    )
+                    }}"
+                    alt="image principale {{ orderDetail.productId.name }}" />
+                  {{ orderDetail.productId.name ~ " " ~ orderDetail.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Statut de la commande</th>
+                <td>{{ orderDetail.orderId.orderState.name }}</td>
+            </tr>
+            <tr>
+                <th>Date de création</th>
+                <td>{{ orderDetail.orderId.createdAt|date('d/m/Y')  }}</td>
+            </tr>
+  
+            
+
+        </tbody>
+    </table>
+{% endfor %}
+    
+    </a>
+    {# <a href="{{ path('receipt_pdf', {'reference' : order.reference}) }}" class="btn btn-success ">Télécharger la
+		        facture</a> #}
+  </div>
+    {{ form_start(orderStateForm)}}
+
+     <div class="col-3">
+        {{ form_row(orderStateForm.name, {
+            'label': 'Etat',
+
+        }) }}
+     </div>
+
+
+     <div class="row text-start my-5">
+        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <button type="submit" class="btn btn-success">Valider</button>
+            <a href="#" class="btn btn-outline-danger me-3">Retourner à l'accueil</a>
+        </div>
+    </div>
+
+
+
+    {{ form_end(orderStateForm)}}
+
+    
+
+
+{% endblock %}
