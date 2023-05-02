@@ -55,6 +55,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Favorite::class)]
     private Collection $favorites;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Category $category = null;
+
 
     public function __construct()
     {
@@ -274,6 +277,18 @@ class Product
                 $favorite->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

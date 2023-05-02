@@ -41,6 +41,7 @@ class CategoryType extends AbstractType
                 ]
             ])
             ->add('description', TextareaType::class, [
+                'required'=> false,
                 'attr' => [
                     'maxLength' => 65535
                 ]

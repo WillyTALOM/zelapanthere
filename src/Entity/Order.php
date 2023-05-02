@@ -44,6 +44,15 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?Address $billingAddress = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $method = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeSession = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $paypal = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -176,6 +185,42 @@ class Order
     public function setBillingAddress(?Address $billingAddress): self
     {
         $this->billingAddress = $billingAddress;
+
+        return $this;
+    }
+
+    public function getMethod(): ?string
+    {
+        return $this->method;
+    }
+
+    public function setMethod(string $method): self
+    {
+        $this->method = $method;
+
+        return $this;
+    }
+
+    public function getStripeSession(): ?string
+    {
+        return $this->stripeSession;
+    }
+
+    public function setStripeSession(?string $stripeSession): self
+    {
+        $this->stripeSession = $stripeSession;
+
+        return $this;
+    }
+
+    public function getPaypal(): ?string
+    {
+        return $this->paypal;
+    }
+
+    public function setPaypal(?string $paypal): self
+    {
+        $this->paypal = $paypal;
 
         return $this;
     }

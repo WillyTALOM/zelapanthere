@@ -40,15 +40,20 @@ class CategoryController extends AbstractController
             }
 
              $img = $form['image']->getData();
-            if ($img === null) {
-                $this->addFlash('danger', 'Pas d\'image trouvée');
-                return $this->redirectToRoute('admin_category');
-            }
-            $extensionImg = $img->guessExtension();
-            $nomImg = time() . '-1.'.$extensionImg;
-            $img->move($this->getParameter('category_image_dir'), $nomImg);
 
-            $category->setImage($nomImg);
+             if($img){
+                $extensionImg = $img->guessExtension();
+                $nomImg = time() . '-1.'.$extensionImg;
+                $img->move($this->getParameter('category_image_dir'), $nomImg);
+                $category->setImage($nomImg);
+             }
+            // if ($img === null) {
+            //     $this->addFlash('danger', 'Pas d\'image trouvée');
+            //     return $this->redirectToRoute('admin_category');
+            // }
+            
+
+            
             $slugger = new AsciiSlugger();
             $category->setSlug(strtolower($slugger->slug($form['name']->getData())));
 

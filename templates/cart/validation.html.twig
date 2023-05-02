@@ -63,11 +63,18 @@
             {{ form_row(cartValidationForm.carrier, {
                 'label': 'Transporteur'
             }) }}
+			{{ form_row(cartValidationForm.payment, {
+                'label': 'Mode de Paiement'
+            }) }}
         <div class="col-12">    
             <div class="row text-end m-5">
                 <div class="col-12">
                     <button type="submit" class="btn btn-outline-success">Payer</button>
                 </div>
+				{# <div class="col-12" >
+					<button type="submit" name="paypal" value="paypal" class="btn btn-outline-success">PayPal</button> 
+                
+                </div> #}
             </div>
         </div>    
         {{ form_end(cartValidationForm) }}

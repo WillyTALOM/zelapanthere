@@ -91,19 +91,16 @@ class CartController extends AbstractController
     #[Route('/cart/validation', name: 'cart_validation')]
     public function validate(UserRepository $userRepository, MailerInterface $mailer,SluggerInterface $slugger, Request $request, OrderStateRepository $orderStateRepository, CartService $cartService, ManagerRegistry $managerRegistry): Response
     {
+        
         $manager = $managerRegistry->getManager();
         if($this->getUser()){
-
             $cartValidationForm = $this->createForm(CartValidationType::class);
             $cartValidationForm->handleRequest($request);
             
-
-            if ($cartValidationForm->isSubmitted() && $cartValidationForm->isValid()) {
-
             
-          
+            if ($cartValidationForm->isSubmitted() && $cartValidationForm->isValid()) {
                 $carrier = $cartValidationForm['carrier']->getData();
-                
+
                 $order = new Order(); // génère la commande en base de données
                 $order->setReference('O' . date_format(new \DateTime(), 'Ymdhis'));
                 $order->setAmount($cartService->getTotal() + $carrier->getPrice());
@@ -113,7 +110,8 @@ class CartController extends AbstractController
                 $order->setBillingAddress($cartValidationForm['billing_address']->getData());
                 $order->setDeliveryAddress($cartValidationForm['delivery_address']->getData());
                 $order->setCarrier($carrier);
-
+                $order->setMethod($cartValidationForm['payment']->getData());                
+             
                 $manager->persist($order);
                 
                 foreach ($cartService->getCart() as $line) {
@@ -128,10 +126,16 @@ class CartController extends AbstractController
                 $manager->flush();
 
                 // traite le transporteur comme un produit (± ajout au panier)
-
-                return $this->redirectToRoute('payment', [
-                    'order' => $order->getId()
-                ]);
+                // if($request->request->get('stripe')){
+                    return $this->redirectToRoute('payment_paypal', [
+                        'order' => $order->getId()
+                    ]);
+                // }
+                // if($request->request->get('paypal')){
+                //     return $this->redirectToRoute('paymentpaypal', [
+                //         'order' => $order->getId()
+                //     ]);
+                // }
             }
 
             return $this->render('cart/validation.html.twig', [
@@ -198,6 +202,7 @@ class CartController extends AbstractController
                     $order->setBillingAddress($address);
                     $order->setDeliveryAddress($address);
                     $order->setCarrier($carrier);
+                    $order->setMethod('stripe');
 
                     $manager->persist($order);
 
@@ -217,7 +222,7 @@ class CartController extends AbstractController
                 $manager->flush();
 
                 // traite le transporteur comme un produit (± ajout au panier)
-
+                
                 return $this->redirectToRoute('payment', [
                     'order' => $order->getId()
                 ]);

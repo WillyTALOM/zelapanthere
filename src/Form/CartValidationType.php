@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CartValidationType extends AbstractType
@@ -52,6 +53,16 @@ class CartValidationType extends AbstractType
                     return $carrier->getName() . ' (' . number_format($carrier->getPrice(), 2, ',', ' ') . ' €)';
                 }
             ])
+           ->add('payment', ChoiceType::class, [
+                'choices' => [
+                    'Paypal' => 'paypal',
+                    'Stripe'  => 'stripe'
+                ],
+                'label' => false,
+                'required' => true,
+                'multiple' => false,
+                'expanded' => true
+           ]) 
         ;
     }
 

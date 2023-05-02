@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Product;
 use App\Form\ImageType;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -70,6 +72,13 @@ class ProductType extends AbstractType
                 'mapped' => false,
                 'help' => 'png, jpg, jpeg, jp2 ou webp - 5 Mo maximum',
                 
+            ])
+
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                // 'expanded' => true
+
             ])
             
         ;
