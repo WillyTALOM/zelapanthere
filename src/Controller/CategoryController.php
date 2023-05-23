@@ -24,7 +24,7 @@ class CategoryController extends AbstractController
         //     12
         // );
 
-        return $this->render('base.html.twig', [
+        return $this->render('partials/header.html.twig', [
             // 'products' => $products,
             'categories' => $categories
         ]);
