@@ -29,7 +29,6 @@ class CategoryController extends AbstractController
             'categories' => $categories
         ]);
     }
-    
     #[Route('/products/{category}', name: 'products_by_category')]
     public function getProduitsByCategory(string $category, CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request): Response
     {
@@ -43,7 +42,7 @@ class CategoryController extends AbstractController
         //     12
         // );
 
-        return $this->render('partials/header.html.twig', [
+        return $this->render('product/productCategory.html.twig', [
             'products' => $productRepository->findBy(['category' => $category]),
             'category' => $category,
             'categories' => $categories
