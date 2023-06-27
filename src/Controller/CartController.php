@@ -127,9 +127,14 @@ class CartController extends AbstractController
 
                 // traite le transporteur comme un produit (± ajout au panier)
                 // if($request->request->get('stripe')){
+                if ($cartValidationForm['payment']->getData() === 'stripe'){
                     return $this->redirectToRoute('payment_stripe', [
-                        'order' => $order->getId()
-                    ]);
+                        'orde' => $order->getId()
+                    ]);}
+                    else{return $this->redirectToRoute('payment_paypal', [
+                        'orde' => $order->getId()
+                    ]);}
+                        
                 // }
                 // if($request->request->get('paypal')){
                 //     return $this->redirectToRoute('paymentpaypal', [
