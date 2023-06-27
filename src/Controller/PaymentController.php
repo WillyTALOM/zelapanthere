@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class PaymentController extends AbstractController
 {
-   #[Route('/payment/cancel', name: 'payment_cancel')]
+   #[Route('payment/cancel', name: 'payment_cancel')]
     public function cancel(Request $request): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') { // vérifie qu'on vient bien de Stripe
@@ -32,7 +32,7 @@ class PaymentController extends AbstractController
         return $this->render('payment/cancel.html.twig');
     }
     
-    #[Route('/payment-stripe/{order}', name: 'payment_stripe')]
+    #[Route('payment-stripe/{order}', name: 'payment_stripe')]
     public function stripe(Request $request, CartService $cartService, Order $order): Response
     {
         // si on ne vient pas de la page de validation du panier, on redirige
@@ -112,7 +112,7 @@ class PaymentController extends AbstractController
 
      
 
-    #[Route('/payment/{order}/success', name: 'payment_success')]
+    #[Route('payment/{order}/success', name: 'payment_success')]
     public function success(Request $request, CartService $cartService, Order $order, OrderStateRepository $orderStateRepository, ManagerRegistry $managerRegistry, MailerInterface $mailer): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') { // vérifie qu'on vient bien de Stripe
