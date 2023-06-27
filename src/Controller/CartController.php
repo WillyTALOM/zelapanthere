@@ -129,10 +129,10 @@ class CartController extends AbstractController
                 // if($request->request->get('stripe')){
                 if ($cartValidationForm['payment']->getData() === 'stripe'){
                     return $this->redirectToRoute('payment_stripe', [
-                        'orde' => $order->getId()
+                        'order' => $order->getId()
                     ]);}
                     else{return $this->redirectToRoute('payment_paypal', [
-                        'orde' => $order->getId()
+                        'order' => $order->getId()
                     ]);}
                         
                 // }
