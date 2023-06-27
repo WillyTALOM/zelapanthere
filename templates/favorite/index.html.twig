@@ -14,7 +14,7 @@
         {% for favorite in app.user.favorites %}
             <div class="col-md-6 col-lg-4 col-xl-3 p-3">
                 <div class="card text-center">
-                    <img src="{{ asset('img/product/' ~ favorite.product.img1) }}" class="card-img-top p-3" alt="image principale du jeu {{ favorite.product.name }}">
+                    <img src="{{ asset('/img/product/' ~ favorite.product.img1) }}" class="card-img-top p-3" alt="image principale du jeu {{ favorite.product.name }}">
                     {% if favorite.product.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
                         <span class="new_product">Nouveauté</span>
                     {% endif %}

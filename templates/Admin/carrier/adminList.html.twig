@@ -20,7 +20,7 @@
 		{% for carrier in carriers|reverse %}
 		<tr>
 			<td>{{ loop.revindex }}</td>
-			<td><img src="{{ asset('img/carrier/' ~ carrier.image) }}" alt="logo {{ carrier.name }}" class="me-2">{{
+			<td><img src="{{ asset('/img/carrier/' ~ carrier.image) }}" alt="logo {{ carrier.name }}" class="me-2">{{
 				carrier.name }}</td>
 			<td>{{ carrier.price|number_format(2, ',', ' ') }}
 				€</td>

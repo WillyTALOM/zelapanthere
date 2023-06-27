@@ -18,7 +18,7 @@
         {% for category in categories|reverse %}
         <tr>
             <td>{{ loop.revindex }}</td>
-            <td><img src="{{ asset('img/category/' ~ category.image) }}" alt="image principale de la categorie {{ category.name }}" class="pe-3">
+            <td><img src="{{ asset('/img/category/' ~ category.image) }}" alt="image principale de la categorie {{ category.name }}" class="pe-3">
                 {{ category.name }}</td>
             <td>
                 <a href="{{ path('category_update', {'id': category.id}) }}"><i

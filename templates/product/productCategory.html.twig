@@ -5,7 +5,7 @@
 {% block title %}produit par category{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/home.css') }}">
 {% endblock %}
 {% block body %}
 
@@ -21,7 +21,7 @@
 				</div>
 				{% endif %}       
                 
-				<img class="card-img-top" src= "{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[4].name )}}" alt="image principale du livre {{ product.name }}" />
+				<img class="card-img-top" src= "{{ asset('/assets/uploads/products/mini/300x300-' ~ product.image[4].name )}}" alt="image principale du livre {{ product.name }}" />
 
 				<div class="card-body p-4">
 					<div class="text-center">

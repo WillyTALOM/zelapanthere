@@ -27,7 +27,7 @@
             <tr>
                 
                 <td>{{ product.id }}</td>
-                <td class="text-start"><img src="{{ asset('assets/uploads/products/mini/300x300-' ~ product.image[0].name )}}"
+                <td class="text-start"><img src="{{ asset('/assets/uploads/products/mini/300x300-' ~ product.image[0].name )}}"
 					alt="image principale du produit {{ product.name }}" class="pe-3">{{ product.name }}</td>
                 <td>{{ product.description|u.truncate(50,'...', false) }}</td>
                 <td>{{ product.quantity }}</td>

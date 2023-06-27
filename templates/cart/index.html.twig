@@ -4,7 +4,7 @@
 
 {% block description %}Consultez et modifiez votre panier {{ contact_company }}{% endblock %}
 
-{# {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/cart.css') }}">{% endblock %} #}
+{# {% block stylesheets %}<link rel="stylesheet" href="{{ asset('/css/cart.css') }}">{% endblock %} #}
 
 {% block h1 %}Panier{% endblock %}
 
@@ -27,7 +27,7 @@
                         {% for element in cart %}
                             <tr>
                                 <td class="text-center">
-                                    <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ element.product.image[4].name )}} " alt="image principale {{ element.product.name }}"> 
+                                    <img src="{{ asset('/assets/uploads/products/mini/300x300-' ~ element.product.image[4].name )}} " alt="image principale {{ element.product.name }}"> 
                                     {{ element.product.name }} 
                                     <a href="{{ path('cart_delete', {'id': element.product.id}) }}" class="text-danger"><i class="bi bi-x-circle"></i></a>
                                 </td>
@@ -94,7 +94,7 @@
             {% for featuredProduct in featuredProducts %}
                 <div class="col-md-6 col-lg-4 col-xl-3 p-3">
                     <div class="card text-center">                   
-                        <img src="{{ asset('assets/uploads/products/mini/300x300-' ~ featuredProduct.image[4].name) }} " class="card-img-top p-3" alt="image principale du jeu {{ featuredProduct.name }}">
+                        <img src="{{ asset('/assets/uploads/products/mini/300x300-' ~ featuredProduct.image[4].name) }} " class="card-img-top p-3" alt="image principale du jeu {{ featuredProduct.name }}">
                         {% if featuredProduct.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
                             <span class="new_product">Nouveauté</span>
                         {% endif %}
@@ -121,6 +121,6 @@
 
 {% block javascripts %}
 
-<script src="{{ asset('js/cart.js') }}"></script>
+<script src="{{ asset('/js/cart.js') }}"></script>
 
 {% endblock %}
