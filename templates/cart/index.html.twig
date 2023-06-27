@@ -74,16 +74,14 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row my-5">
             <div class="col-12 text-end">
-                <a href="{{ path('cart_clear') }}" class="btn btn-outline-danger me-3">Vider le panier</a>
-                <a href="{{ path('cart_validation') }}" class="btn btn-outline-success">Valider le panier</a>
-            </div>
+                <a href="{{ path('cart_clear') }}" class="buttonred text-decoration-none me-3">Vider le panier</a>
+                <a href="{{ path('cart_validation') }}" class="buttonb text-decoration-none">Valider le panier</a>
+            </div> 
         </div>
     </div>
-
     <div class="container">
         <div class="row my-5">
             {% if app.user %}
