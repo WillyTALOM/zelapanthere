@@ -23,7 +23,7 @@ class CategoryController extends AbstractController
         //     $request->query->getInt('page', 1),
         //     12
         // );
-        $categorySlug = $categoryRepository->findOneBy(['slug'=> $slug]);
+       // $categorySlug = $categoryRepository->findOneBy(['slug'=> $slug]);
         return $this->render('partials/header.html.twig', [
             // 'products' => $products,
             'categories' => $categories
