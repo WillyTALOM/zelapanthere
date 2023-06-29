@@ -7,6 +7,8 @@ use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
 class CategoryController extends AbstractController
 {
@@ -30,20 +32,21 @@ class CategoryController extends AbstractController
         ]);
     }
     #[Route('/products/{category}', name: 'products_by_category')]
-    public function getProduitsByCategory(string $category, CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request): Response
+    public function getProduitsByCategory(string $category, CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request, PaginatorInterface $paginator ): Response
     {
         $category = $categoryRepository->findOneBy(['name' => $category]);
         $categories = $categoryRepository->findAll();
-        // $data = $products;
+        $products = $productRepository->findBy(['category' => $category]);
+        $data = $products;
 
-        // $products = $paginator->paginate(
-        //     $data,
-        //     $request->query->getInt('page', 1),
-        //     12
-        // );
+        $products = $paginator->paginate(
+             $data,
+             $request->query->getInt('page', 1),
+             12
+         );
 
         return $this->render('product/productCategory.html.twig', [
-            'products' => $productRepository->findBy(['category' => $category]),
+            'products' => $products,
             'category' => $category,
             'categories' => $categories
         ]);
