@@ -24,7 +24,7 @@
 				<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Nouveauté
 				</div>
 				{% endif %}
-				<img class="card-img-top" src="{{ asset('/img/product/' ~ product.image1) }}"
+				<img class="card-img-top" src="{{ asset('/assets/uploads/products/mini/300x300-' ~ product.image[0].name )}}"
 					alt="produit de {{ product.name }}" />
 
 				<div class="card-body p-4">

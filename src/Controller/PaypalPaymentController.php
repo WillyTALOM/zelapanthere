@@ -30,7 +30,7 @@ class PaypalPaymentController extends AbstractController
                     'description' => 'Panier',
                     'items'       => array_map(function ($product) {
                         return [
-                            'name'        => $product['name'], 
+                            'name'        => $line['product']->getName(),
                             'quantity'    => 1,
                             'unit_amount' => [
                                 'value'         => number_format($product['price'] / 100, 2, '.', ""), // Mes sommes sont en centimes d'euros

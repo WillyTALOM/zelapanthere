@@ -125,10 +125,10 @@ class PaymentController extends AbstractController
         $managerRegistry->getManager();
         
         $email = (new TemplatedEmail()) // email pour informer l'admin de la nouvelle commande à expédier
-            ->from(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Vente de livres'))
+            ->from(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Mamayayatoh'))
             ->to(new Address($this->container->get('twig')->getGlobals()['contact_email']))
-            ->replyTo(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Vente de livres'))
-            ->subject('Ze - nouvelle commande')
+            ->replyTo(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Mamayayatoh'))
+            ->subject('Nouvelle commande')
             ->htmlTemplate('email/order_new.html.twig')
             ->context([
                 'order' => $order,
@@ -137,10 +137,10 @@ class PaymentController extends AbstractController
         $mailer->send($email);
 
         $email = (new TemplatedEmail()) // email récapitulatif pour le client
-            ->from(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Vente de livres'))
+            ->from(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Mamayayatoh'))
             ->to(new Address($order->getUser()->getEmail(), $order->getUser()->getFirstName() . strtoupper($order->getUser()->getLastName())))
-            ->replyTo(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Vente de livres'))
-            ->subject('Ze - récapitulatif de commande')
+            ->replyTo(new Address($this->container->get('twig')->getGlobals()['contact_email'], 'Mamayayatoh'))
+            ->subject('Récapitulatif de commande')
             ->htmlTemplate('email/order_confirmation.html.twig')
             ->context([
                 'order' => $order,
