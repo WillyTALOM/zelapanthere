@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
 class CategoryController extends AbstractController
 {
@@ -31,7 +32,7 @@ class CategoryController extends AbstractController
         ]);
     }
     #[Route('/products/{category}', name: 'products_by_category')]
-    public function getProduitsByCategory(string $category, CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request): Response
+    public function getProduitsByCategory(string $category, CategoryRepository $categoryRepository, ProductRepository $productRepository, Request $request, PaginatorInterface $paginator ): Response
     {
         $category = $categoryRepository->findOneBy(['name' => $category]);
         $categories = $categoryRepository->findAll();
