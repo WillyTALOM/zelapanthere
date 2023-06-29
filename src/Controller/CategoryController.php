@@ -35,16 +35,17 @@ class CategoryController extends AbstractController
     {
         $category = $categoryRepository->findOneBy(['name' => $category]);
         $categories = $categoryRepository->findAll();
-        // $data = $products;
+        $products = $productRepository->findBy(['category' => $category]);
+        $data = $products;
 
-        // $products = $paginator->paginate(
-        //     $data,
-        //     $request->query->getInt('page', 1),
-        //     12
-        // );
+        $products = $paginator->paginate(
+             $data,
+             $request->query->getInt('page', 1),
+             12
+         );
 
         return $this->render('product/productCategory.html.twig', [
-            'products' => $productRepository->findBy(['category' => $category]),
+            'products' => $products,
             'category' => $category,
             'categories' => $categories
         ]);
