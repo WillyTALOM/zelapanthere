@@ -13,11 +13,11 @@
     <strong>Statut de la commande :</strong>
     {% if order.orderState.name == 'payé' %}
       Paiement accepté
-    {% elseif order.orderState.name == 'attente paiement' %}
+    {% elseif order.orderState.name == 'Paiement en attente' %}
       La commande est annulée
     {% elseif order.orderState.name == 'en préparation' %}
       La commande est en préparation
-    {% elseif order.orderState.name == 'Livraison' %}
+    {% elseif order.orderState.name == 'Livraison en cours' %}
       La commande est en cours de livraison
     {% elseif order.orderState.name == 'Livré' %}
       Commande livré 
