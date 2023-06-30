@@ -27,12 +27,12 @@ class CartValidationType extends AbstractType
     {
         $builder
             ->add('lastName', TextType::class, [
-            'attr' => [
+                'attr' => [
                 'maxLenght' => 100
             ]
            ])
             ->add('firstName', TextType::class, [
-            'attr' => [
+                'attr' => [
                 'maxLenght' => 100
             ]
            ])
