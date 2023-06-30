@@ -25,15 +25,29 @@ class ReceiptController extends AbstractController
         $order = $orderRepository->findOneByReference($reference);
         $product = $productRepository->findOneByReference($reference);
         $product = $productRepository->findAll();
-        $contactEmail = $this->container->get('twig')->getGlobals()['contact_email']);
-        $companyName = $this->container->get('twig')->getGlobals()['company_name'])
-
+        $company_company = $this->container->get('twig')->getGlobals()['contact_company']);
+        $company_address = $this->container->get('twig')->getGlobals()['contact_address']);      
+        $contact_zip = $this->container->get('twig')->getGlobals()['contact_zip']);
+        $contact_city = $this->container->get('twig')->getGlobals()['contact_city']);
+        $contact_phone = $this->container->get('twig')->getGlobals()['contact_phone']);
+        $contact_email = $this->container->get('twig')->getGlobals()['contact_email']);
+        $contact_siret = $this->container->get('twig')->getGlobals()['contact_siret']);
+        $contact_country = $this->container->get('twig')->getGlobals()['contact_country']);
+        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/profile.png'),l
 
         $html = $this->renderView('receipt/orderReceipt.html.twig', [
             'product' => $product,
             'order' => $order,
             'user' => $this->getUser(),
-            'logo'  => $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/profile.png'),
+            'contact_company' => $contact_company,
+            'contact_address' => $contact_address,
+            'contact_zip' => $contact_zip,
+            'contact_city' => $contact_city,
+            'contact_phone' => $contact_phone,
+            'contact_email' => $contact_email,
+            'contact_siret' => $contact_siret,
+            'contact_country' => $contact_country,
+            'contact_logo'  => $contact_logo,
             // 'orderDetails' => $orderDetails
 
         ]);
@@ -48,29 +62,18 @@ class ReceiptController extends AbstractController
             'product' => $product,
             'order' => $order,
             'user' => $this->getUser(),
+            'contact_company' => $contact_company,
+            'contact_address' => $contact_address,
+            'contact_zip' => $contact_zip,
+            'contact_city' => $contact_city,
+            'contact_phone' => $contact_phone,
+            'contact_email' => $contact_email,
+            'contact_siret' => $contact_siret,
+            'contact_country' => $contact_country,
+            'contact_logo'  => $contact_logo,
             // 'orderDetails' => $orderDetails
 
         ]);
-    }
-    
-          $data = [
-            'imageSrc'  => $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/profile.png'),
-            'name'         => 'John Doe',
-            'address'      => 'USA',
-            'mobileNumber' => '000000000',
-            'email'        => 'john.doe@email.com'
-        ];
-        $html =  $this->renderView('pdf_generator/index.html.twig', $data);
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->render();
-         
-        return new Response (
-            $dompdf->stream('resume', ["Attachment" => false]),
-            Response::HTTP_OK,
-            ['Content-Type' => 'application/pdf']
-        );
-    }
  
     private function imageToBase64($path) {
         $path = $path;
