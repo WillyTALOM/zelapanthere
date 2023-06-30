@@ -46,7 +46,7 @@
 						<a href="{{ path('cart_add', {'id' : product.id }) }}"
 							class="card-link rounded-pill btn btn-outline-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}">
 							<i class="bi bi-cart-plus-fill"></i></a>
-						<a href="#" class="card-link btn btn-outline-danger rounded-pill"> <i
+						<a href="{{ path('favorite_add', {'id': product.id }) }}" class="card-link btn btn-outline-danger rounded-pill"> <i
 								class="bi bi-heart-fill"></i></a>
 					</div>
 				</div>

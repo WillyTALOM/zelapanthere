@@ -37,12 +37,12 @@ class FavoriteController extends AbstractController
     #[Route('/favorite/add/{id}', name: 'favorite_add')]
     public function add(Product $product, Request $request): Response
     {
-        if ($this->getUser()) {
-            $userFavoritesProducts = [];
-            foreach ($this->getUser()->getFavorites() as $userFavorite) {
-                $userFavoritesProducts[] = $userFavorite->getProduct();
-            }
-            if (in_array($product, $userFavoritesProducts)) {
+        if ($this->getUser()) { // vérifie si un utilisateur est connecté
+            $userFavoritesProducts = []; // initialise un tableau vide pour accueillir les produits en favoris
+            foreach ($this->getUser()->getFavorites() as $userFavorite) { // pour chaque produit déjà ajouté en favori
+                $userFavoritesProducts[] = $userFavorite->getProduct(); // on stocke le produit dans le tableau des favoris
+            } // au final : récupère un tbleau contenant tous les produits ajoutés en favoris (de l'utilisateur connecté)
+            if (in_array($product, $userFavoritesProducts)) { // si le produit à mettre en favori y est déjà
                 $this->addFlash('danger', 'Vous avez déjà ajouté ' . $product->getName() . ' à vos favoris');
             } else {
                 $favorite = new Favorite();
@@ -54,8 +54,8 @@ class FavoriteController extends AbstractController
             }
             return $this->redirect($request->headers->get('referer'));
         } else {
-            $this->addFlash('danger', 'Vous devez posséder un compte TTG et être connecté pour ajouter des produits à vos favoris');
-            return $this->redirectToRoute('home');
+            $this->addFlash('danger', 'Vous devez vous connecter sur votre compte VDV pour ajouter des produits à vos favoris');
+            return $this->redirect($request->headers->get('referer'));
         }
     }
 
@@ -73,7 +73,7 @@ class FavoriteController extends AbstractController
             return $this->redirect($request->headers->get('referer'));
         } else {
             $this->addFlash('danger', 'Vous n\'avez pas les droits pour supprimer ce favori');
-            return $this->redirectToRoute('home');
+            return $this->redirect($request->headers->get('referer'));
         }
     }
 }
