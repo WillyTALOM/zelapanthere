@@ -25,6 +25,8 @@ class ReceiptController extends AbstractController
         $order = $orderRepository->findOneByReference($reference);
         $product = $productRepository->findOneByReference($reference);
         $product = $productRepository->findAll();
+        $contactEmail = $this->container->get('twig')->getGlobals()['contact_email']);
+        $companyName = $this->container->get('twig')->getGlobals()['company_name'])
 
 
         $html = $this->renderView('receipt/orderReceipt.html.twig', [
