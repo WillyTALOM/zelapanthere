@@ -3,6 +3,7 @@
 <ul>
     <li>Référence : {{ order.reference }}</li>
     <li>Montant : {{ order.amount }} €</li>
+    <li>Transporteur : {{ order.carrier.name }} </li>
     <li>Adresse de facturation : 
         <ul>
             <li>{{ order.user.firstName ~ ' ' ~ order.user.lastName|upper }}</li>
