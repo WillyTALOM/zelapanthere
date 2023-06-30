@@ -52,6 +52,12 @@ class Order
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $paypal = null;
+    
+    #[ORM\Column(length: 20)]
+    private ?string $firstName = null;
+    
+    #[ORM\Column(length: 20)]
+    private ?string $lastName = null;
 
     public function __construct()
     {
