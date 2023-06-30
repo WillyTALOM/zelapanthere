@@ -28,6 +28,12 @@ class Address
     private ?string $city = null;
 
     #[ORM\Column(length: 20)]
+    private ?string $firstName = null;
+    
+    #[ORM\Column(length: 20)]
+    private ?string $lastName = null;
+    
+    #[ORM\Column(length: 20)]
     private ?string $country = null;
 
     #[ORM\OneToMany(mappedBy: 'delivery_address', targetEntity: Order::class)]
@@ -152,6 +158,30 @@ class Address
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+    
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+    
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
 
         return $this;
     }
