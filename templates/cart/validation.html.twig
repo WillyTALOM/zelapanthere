@@ -54,6 +54,12 @@
 			</div>
 		</div> 
         {{ form_start(cartValidationForm) }}
+            {{ form_row(cartValidationForm.firstName, {
+                'label': 'Prénom'
+            }) }}
+            {{ form_row(cartValidationForm.lastName, {
+                'label': 'Nom'
+            }) }}
             {{ form_row(cartValidationForm.billing_address, {
                 'label': 'Adresse de facturation'
             }) }}
