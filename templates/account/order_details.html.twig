@@ -24,7 +24,7 @@
     {% endif %}
     <br />
      <strong>Destinataire :</strong>
-    {{ order.firstName ~ order.lastName }}<br />
+    {{ order.firstName ~ ' ' ~ order.lastName }}<br />
     <strong>Commande passée le :</strong>
     {{ order.createdAt|date('d/m/Y') }}<br />
     <strong>Référence de ma commande :</strong>
