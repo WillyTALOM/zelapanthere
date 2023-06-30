@@ -60,6 +60,9 @@
             {{ form_row(cartValidationForm.delivery_address, {
                 'label': 'Adresse de livraison'
             }) }}
+				<div class="text-start my-5">
+        <a class="buttonb text-decoration-none" href="{{ path('user_account_address_add', { 'id' : app.user.id }) }}">Ajouter une adresse</a>
+    </div>
             {{ form_row(cartValidationForm.carrier, {
                 'label': 'Transporteur'
             }) }}

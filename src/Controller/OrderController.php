@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,17 +13,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OrderController extends AbstractController
 {
     #[Route('/account/{id}/orders', name: 'user_account_orders')]
-    public function orders(OrderRepository $orderRepository, Request $request)
+    public function orders(OrderRepository $orderRepository, Request $request, PaginatorInterface $paginator)
     {
         $orders = $orderRepository->findSuccessOrders($this->getUser());
 
-        // $data = $orders;
+         $data = $orders;
 
-        // $orders = $paginator->paginate(
-        //     $data,
-        //     $request->query->getInt('page', 1),
-        //     10
-        // );
+         $orders = $paginator->paginate(
+             $data,
+             $request->query->getInt('page', 1),
+             10
+         );
 
         return $this->render('account/orders.html.twig', [
             'orders' => $orders

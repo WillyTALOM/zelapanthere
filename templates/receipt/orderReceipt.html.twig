@@ -1,0 +1,52 @@
+<img src="{{ asset('/img/logo/logo1.png') }}">
+<h2>Facture numero {{order.reference}}</h2>
+<strong>{{ order.user.firstName ~ ' ' ~ order.user.lastName|upper }}</strong><br />
+<strong>Commande passée le :</strong> {{ order.createdAt|date('d/m/Y') }}<br />
+<strong>Référence de ma commande :</strong> <small>{{ order.reference }}</small><br />
+<strong>{{ order.deliveryAddress.address }}</strong><br />
+<strong> {{ order.deliveryAddress.additional != null ? ~ order.deliveryAddress.additional : null
+    }}</strong><br />
+<strong>{{ order.deliveryAddress.zip ~ ' ' ~ order.deliveryAddress.city ~ ' ' ~ order.deliveryAddress.country}}</strong>
+
+
+
+
+
+<h3>Détails de la commande {{ order.reference }}</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for orderDetail in order.orderDetails %}
+        <tr>
+            <td> {{ orderDetail.productId.name }} </td>
+            <td>{{ orderDetail.quantity }}</td>
+            {% if orderDetail.productId.reduction > 0 %}
+            <td>{{ orderDetail.productId.priceSolde * orderDetail.quantity }}</td>
+            {% else %}
+            <td>{{ orderDetail.productId.price * orderDetail.quantity }}</td>
+            {% endif %}
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+    <td>{{ order.carrier.name }}</td>
+    <td></td>
+    <td>{{ order.carrier.price|number_format(2,',', '')}}</td>
+    <tfoot>
+        <tr>
+            <th colspan="2">TOTAL</th>
+            <th>{{order.amount|number_format(2,',', '')}}
+                €</th>
+
+        </tr>
+    </tfoot>
+</table>

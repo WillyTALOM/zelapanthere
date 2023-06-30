@@ -5,8 +5,7 @@
 {% endblock %}
 
 
-{% block h1 %}Détails de
-    {{ product.name }}
+{% block h1 %}Détails du produit
 {% endblock %}
 
 
@@ -38,12 +37,13 @@
                 </div>
             </div>
             <div class="col-6">
+                <h3><p>{{ product.name|upper}}</p></h3>
                 <p>{{ product.description }}</p>
                 {# <p>Catégorie : {{ product.categories.name }}</p> #}
                 <p>Prix : {{ product.price|number_format(2, ',', '
 					') }} €</p>
                 {% if product.quantity > 0 %}
-                    <a href="#" class="btn btn-success">Ajouter au panier</a>
+                    <a href="{{ path('cart_add', {'id' : product.id }) }}" class="rounded-pill btn btn-outline-success">Ajouter au panier</a>
                 {% else %}
                     <p class="text-danger">Temporairement en rupture de stock</p>
                 {% endif %}
