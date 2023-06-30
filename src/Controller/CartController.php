@@ -100,8 +100,8 @@ class CartController extends AbstractController
             
             if ($cartValidationForm->isSubmitted() && $cartValidationForm->isValid()) {
                 $carrier = $cartValidationForm['carrier']->getData();
-                $firstName = $cartValidationForm['firstName']->getData();
-                $lastName = $cartValidationForm['lastName']->getData();
+                $firstName = $cartValidationForm['first_name']->getData();
+                $lastName = $cartValidationForm['last_name']->getData();
                 
                 $order = new Order(); // génère la commande en base de données
                 $order->setReference('O' . date_format(new \DateTime(), 'Ymdhis'));
