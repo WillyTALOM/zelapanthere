@@ -25,6 +25,16 @@ class CartValidationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('lastName', TextType::class, [
+            'attr' => [
+                'maxLenght' => 100
+            ]
+           ])
+            ->add('firstName', TextType::class, [
+            'attr' => [
+                'maxLenght' => 100
+            ]
+           ])
             ->add('billing_address', EntityType::class, [
                 'class' => Address::class,
                 'query_builder' => function(EntityRepository $entityRepository) {
