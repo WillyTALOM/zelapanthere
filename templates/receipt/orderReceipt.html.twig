@@ -4,8 +4,6 @@
 <strong>Commande passée le :</strong> {{ order.createdAt|date('d/m/Y') }}<br />
 <strong>Référence de ma commande :</strong> <small>{{ order.reference }}</small><br />
 <strong>{{ order.deliveryAddress.address }}</strong><br />
-<strong> {{ order.deliveryAddress.additional != null ? ~ order.deliveryAddress.additional : null
-    }}</strong><br />
 <strong>{{ order.deliveryAddress.zip ~ ' ' ~ order.deliveryAddress.city ~ ' ' ~ order.deliveryAddress.country}}</strong>
 
 
