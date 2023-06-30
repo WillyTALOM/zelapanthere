@@ -96,11 +96,8 @@
                         {% if featuredProduct.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
                             <span class="new_product">Nouveauté</span>
                         {% endif %}
-                        {% if featuredProduct.quantity >= 5 and featuredProduct.quantity > 0 %}
-                            <span class="last_products">Derniers produits</span>
-                        {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ featuredProduct.name|u.truncate(25,'...', false) }}</h5>
+                            <h5 class="card-title">{{ featuredProduct.name|u.truncate(15,'...', false) }}</h5>
                         </div>
                         <div class="card-body pt-0">
                             <a href="{{ path('product_show', {'slug': featuredProduct.slug}) }}" class="card-link btn btn-outline-dark rounded-pill button-shrink">Détails</a>
