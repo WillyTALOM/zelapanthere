@@ -1,6 +1,6 @@
 <img src="{{ asset('/img/logo/logo1.png') }}">
 <h2>Facture numero {{order.reference}}</h2>
-<strong>{{ order.user.firstName ~ ' ' ~ order.user.lastName|upper }}</strong><br />
+<strong>{{ order.firstName ~ ' ' ~ order.lastName|upper }}</strong><br />
 <strong>Commande passée le :</strong> {{ order.createdAt|date('d/m/Y') }}<br />
 <strong>Référence de ma commande :</strong> <small>{{ order.reference }}</small><br />
 <strong>{{ order.deliveryAddress.address }}</strong><br />
