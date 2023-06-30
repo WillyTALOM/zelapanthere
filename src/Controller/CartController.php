@@ -109,6 +109,8 @@ class CartController extends AbstractController
                 $order->setCreatedAt(new \DateTimeImmutable());
                 $order->setOrderState($orderStateRepository->findOneBy(['name' => 'attente paiement']));
                 $order->setUser($this->getUser());
+                $order->setfirstName($firstName);
+                $order->setlastName($lastName);
                 $order->setBillingAddress($cartValidationForm['billing_address']->getData());
                 $order->setDeliveryAddress($cartValidationForm['delivery_address']->getData());
                 $order->setCarrier($carrier);
