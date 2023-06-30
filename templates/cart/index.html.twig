@@ -100,14 +100,14 @@
                             <span class="last_products">Derniers produits</span>
                         {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ featuredProduct.name }}</h5>
+                            <h5 class="card-title">{{ featuredProduct.name|u.truncate(25,'...', false) }}</h5>
                         </div>
                         <div class="card-body pt-0">
-                            <a href="{{ path('product_show', {'slug': featuredProduct.slug}) }}" class="card-link btn btn-outline-primary">Détails</a>
+                            <a href="{{ path('product_show', {'slug': featuredProduct.slug}) }}" class="card-link btn btn-outline-dark rounded-pill button-shrink">Détails</a>
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                                <a href="{{ path('favorite_add', {'id': featuredProduct.id}) }}" class="card-link btn btn-danger"><i class="bi bi-heart-fill"></i></a>
+                                <a href="{{ path('favorite_add', {'id': featuredProduct.id}) }}" class="card-link btn btn-outline-danger rounded-pill"><i class="bi bi-heart-fill"></i></a>
                             {% endif %}
-                            <a href="{{ path('cart_add', {'id': featuredProduct.id}) }}" class="card-link btn btn-{{ featuredProduct.quantity != 0 ? 'success' : 'danger disabled' }}"><i class="bi bi-cart-plus-fill"></i></a>
+                            <a href="{{ path('cart_add', {'id': featuredProduct.id}) }}" class="card-link rounded-pill btn btn-outline-{{ featuredProduct.quantity != 0 ? 'success' : 'danger disabled' }}"><i class="bi bi-cart-plus-fill"></i></a>
                         </div>
                     </div>
                 </div>
