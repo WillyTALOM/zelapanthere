@@ -156,7 +156,7 @@ class PaymentController extends AbstractController
 
         $managerRegistry->getManager()->flush();
 
-        return $this->render('payment/success.html.twig');
+        return $this->render('payment/success.html.twig', ['order' => $order,]);
     }
 
     
