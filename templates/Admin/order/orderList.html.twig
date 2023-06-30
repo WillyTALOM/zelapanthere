@@ -14,6 +14,7 @@
                 <th>Montant</th>
                 <th>Transporteur</th>
                 <th>Client</th>
+                <th>Destinataire</th>
                 <th>Statut</th>
                 <th>Actions</th>
             </tr>
@@ -26,6 +27,7 @@
                     <td>{{ order.amount|number_format(2, ',', ' ') }} €</td>
                     <td>{{ order.carrier.name }}</td>
                     <td>{{ order.user.firstName ~ ' ' ~ order.user.lastName|upper }}</td>
+                    <td>{{ order.firstName ~ ' ' ~ order.lastName|upper }}</td>
                     <td>{{ order.orderState.name }}</td>
                     <td>{# <td class="text-start"><img src="{{ asset('assets/uplaods/product/mini/300x300-' ~ order.orderDetails.product_id.image[4]) }}" alt="image principale du jeu {{ order.product.name }}" class="pe-3"> {{ order.product.name }}</td>
                     <td>{{ product.price|number_format(2, ',', ' ') }} €</td> #}
