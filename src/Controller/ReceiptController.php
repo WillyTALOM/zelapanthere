@@ -74,6 +74,7 @@ class ReceiptController extends AbstractController
             // 'orderDetails' => $orderDetails
 
         ]);
+    }    
  
     private function imageToBase64($path) {
         $path = $path;
