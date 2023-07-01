@@ -1,4 +1,6 @@
-<img src="{{ contact_logo }}" style="width:200px;"><br>
+{% extends 'base.html.twig' %}
+
+<img src="{{ contact_logo }}" style="width:100px;"><br>
 {{contact_company }}<br>
 {{contact_address }}<br>
 {{contact_city ~ ' ' ~ contact_zip  }}<br>
