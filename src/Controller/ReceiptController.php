@@ -33,8 +33,7 @@ class ReceiptController extends AbstractController
         $contact_email = $this->container->get('twig')->getGlobals()['contact_email'];
         $contact_siret = $this->container->get('twig')->getGlobals()['contact_siret'];
         $contact_country = $this->container->get('twig')->getGlobals()['contact_country'];
-        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/panthere.jpg
-        g');
+        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/panthere.jpg');
 
         $html = $this->renderView('receipt/orderReceipt.html.twig', [
             'product' => $product,
@@ -78,7 +77,7 @@ class ReceiptController extends AbstractController
     }    
  
     private function imageToBase64($path) {
-        $path = $this->getParameter('kernel.project_dir') . '/public/img/panthere.jpg;
+        $path = $this->getParameter('kernel.project_dir') . '/public/img/panthere.jpg');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
