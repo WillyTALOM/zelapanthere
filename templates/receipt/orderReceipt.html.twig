@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block body %}
+
 <img src="{{ contact_logo }}" style="width:100px;"><br>
 {{contact_company }}<br>
 {{contact_address }}<br>
@@ -65,3 +67,5 @@
         </tr>
     </tfoot>
 </table>
+
+{% endblock %}
