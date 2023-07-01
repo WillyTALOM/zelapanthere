@@ -1,10 +1,20 @@
 <img src="{{ contact_logo }}"><br>
 {{contact_company }}<br>
 {{contact_address }}<br>
-{{contact_ }}<br>
-94041<br>
-USA<br>
-<h2>Facture numero {{order.reference}}</h2>
+{{contact_city ~ ' ' ~ contact_zip  }}<br>
+{{contact_country }}<br>
+{{contact_phone }}<br>
+{{contact_email }}<br>
+{{contact_siret }}<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class='text-center'>Facture numero {{order.reference}}</h2>
 <strong>{{ order.firstName ~ ' ' ~ order.lastName|upper }}</strong><br />
 <strong>Commande passée le :</strong> {{ order.createdAt|date('d/m/Y') }}<br />
 <strong>Référence de ma commande :</strong> <small>{{ order.reference }}</small><br />
