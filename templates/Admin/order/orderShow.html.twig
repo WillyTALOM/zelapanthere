@@ -68,8 +68,8 @@
 {% endfor %}
     
     </a>
-    {# <a href="{{ path('receipt_pdf', {'reference' : order.reference}) }}" class="btn btn-success ">Télécharger la
-		        facture</a> #}
+    <a href="{{ path('receipt_pdf', {'reference' : orderDetail.orderId.reference}) }}" class="btn btn-success ">Télécharger la
+		         facture</a> 
   </div>
     {{ form_start(orderStateForm)}}
 
