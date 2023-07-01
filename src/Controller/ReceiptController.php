@@ -25,8 +25,8 @@ class ReceiptController extends AbstractController
         $order = $orderRepository->findOneByReference($reference);
         $product = $productRepository->findOneByReference($reference);
         $product = $productRepository->findAll();
-        $company_company = $this->container->get('twig')->getGlobals()['contact_company'];
-        $company_address = $this->container->get('twig')->getGlobals()['contact_address'];      
+        $contact_company = $this->container->get('twig')->getGlobals()['contact_company'];
+        $contact_address = $this->container->get('twig')->getGlobals()['contact_address'];      
         $contact_zip = $this->container->get('twig')->getGlobals()['contact_zip'];
         $contact_city = $this->container->get('twig')->getGlobals()['contact_city'];
         $contact_phone = $this->container->get('twig')->getGlobals()['contact_phone'];
