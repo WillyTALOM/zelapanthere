@@ -25,14 +25,14 @@ class ReceiptController extends AbstractController
         $order = $orderRepository->findOneByReference($reference);
         $product = $productRepository->findOneByReference($reference);
         $product = $productRepository->findAll();
-        $company_company = $this->container->get('twig')->getGlobals()['contact_company']);
-        $company_address = $this->container->get('twig')->getGlobals()['contact_address']);      
-        $contact_zip = $this->container->get('twig')->getGlobals()['contact_zip']);
-        $contact_city = $this->container->get('twig')->getGlobals()['contact_city']);
-        $contact_phone = $this->container->get('twig')->getGlobals()['contact_phone']);
-        $contact_email = $this->container->get('twig')->getGlobals()['contact_email']);
-        $contact_siret = $this->container->get('twig')->getGlobals()['contact_siret']);
-        $contact_country = $this->container->get('twig')->getGlobals()['contact_country']);
+        $company_company = $this->container->get('twig')->getGlobals()['contact_company'];
+        $company_address = $this->container->get('twig')->getGlobals()['contact_address'];      
+        $contact_zip = $this->container->get('twig')->getGlobals()['contact_zip'];
+        $contact_city = $this->container->get('twig')->getGlobals()['contact_city'];
+        $contact_phone = $this->container->get('twig')->getGlobals()['contact_phone'];
+        $contact_email = $this->container->get('twig')->getGlobals()['contact_email'];
+        $contact_siret = $this->container->get('twig')->getGlobals()['contact_siret'];
+        $contact_country = $this->container->get('twig')->getGlobals()['contact_country'];
         $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/panthere.jpeg'),
 
         $html = $this->renderView('receipt/orderReceipt.html.twig', [
