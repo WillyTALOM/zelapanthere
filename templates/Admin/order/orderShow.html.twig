@@ -24,9 +24,21 @@
                 <td>{{ orderDetail.orderId.user.phone }}</td>
             </tr>
             <tr>
-                <th>Adresse</th>
+                <th>Adresse de facturation </th>
                 <td>
                 {{ orderDetail.orderId.billingAddress }}
+                </td>
+            </tr>
+            <tr>
+                <th>Destinataire </th>
+                <td>
+                 {{ orderDetail.orderId.firstName ~ " " ~ orderDetail.orderId.lastName }}
+                </td>
+            </tr>
+            <tr>
+                <th>Adresse de livraison </th>
+                <td>
+                {{ orderDetail.orderId.deliveryAddress }}
                 </td>
             </tr>
             <tr>
