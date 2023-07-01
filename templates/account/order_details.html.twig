@@ -10,6 +10,8 @@
 
 {% block body %}
   <div class="container-fluid">
+     <strong>Commandé par :</strong>
+    {{ order.user.firstName ~ ' ' ~ order.user.lastName }}<br />
     <strong>Statut de la commande :</strong>
     {% if order.orderState.name == 'payé' %}
       Paiement accepté
