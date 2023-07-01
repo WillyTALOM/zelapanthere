@@ -329,7 +329,7 @@ background: #55acee;
 .rounded-social-buttons .social-button.twitter:hover, .rounded-social-buttons .social-button.twitter:focus {
 color: #55acee;
 background: #fefefe;
-border-color: #55acee;
+border-color: #000000;
 }
 
 .rounded-social-buttons .social-button.linkedin {
@@ -357,7 +357,7 @@ background: #125688;
 }
 
 .rounded-social-buttons .social-button.instagram:hover, .rounded-social-buttons .social-button.instagram:focus {
-color: #125688;
+color: #bb0000;
 background: #fefefe;
 border-color: #125688;
 }
