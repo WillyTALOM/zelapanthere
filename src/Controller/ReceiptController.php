@@ -76,7 +76,7 @@ class ReceiptController extends AbstractController
     }    
  
     private function imageToBase64($path) {
-        $path = $this->getParameter('kernel.project_dir') . '/public/img/panthere.jpg';
+        $path = $this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png');
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $data = file_get_contents($path);
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
