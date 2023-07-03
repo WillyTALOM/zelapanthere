@@ -4,6 +4,8 @@ twig:
     globals:
         contact_website: '%env(DOMAIN)%'
         contact_company: '%env(COMPANY)%'
+        contact_company1: '%env(COMPANY1)%'
+        contact_company2: '%env(COMPANY2)%'
         contact_address: '%env(ADDRESS)%'
         contact_zip: '%env(ZIP)%'
         contact_city: '%env(CITY)%'
