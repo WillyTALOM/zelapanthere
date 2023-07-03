@@ -75,6 +75,7 @@ class PasswordController extends AbstractController
         $form = $this->createForm(ForgotPasswordType::class);
         $form->handleRequest($request);
         $manager = $managerRegistry->getManager();
+        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png');
 
         if ($form->isSubmitted() && $form->isValid()) {
             // récupère l'utilisateur par son email
@@ -111,7 +112,7 @@ class PasswordController extends AbstractController
                     ->subject('Ze - Réinitialisation mot de passe')
                     ->htmltemplate('password/password_forgot.html.twig')
                     ->context([
-
+                        'contact_logo' => $contact_logo,
                         'url' => $url,
                         'user' => $user
                     ]);
@@ -128,7 +129,6 @@ class PasswordController extends AbstractController
             'requestPasswordForm' => $form->createView(),
         ]);
     }
-
 
     #[Route('/réinitialisation/{token}', name: 'generate_password')]
     public function resetPassword(string $token, Request $request, UserRepository $userRepository, ManagerRegistry $managerRegistry, UserPasswordHasherInterface $userPasswordHasherInterface): Response
