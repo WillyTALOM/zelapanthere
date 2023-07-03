@@ -19,6 +19,7 @@ class ContactController extends AbstractController
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
+        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png');
 
         if($form->isSubmitted() && $form->isValid()){
          $contact = ($form->getData());
@@ -36,7 +37,7 @@ class ContactController extends AbstractController
                 'emailAddress' => htmlspecialchars($contact['email']),
                 'subject' => htmlspecialchars($contact['subject']),
                 'message' => htmlspecialchars($contact['message']),
-                           
+                'contact_logo' => $contact_logo           
               ]); 
               
               if ($contact['attachment'] !== null) {
@@ -55,5 +56,13 @@ class ContactController extends AbstractController
         return $this->render('contact/index.html.twig', [
             'contactForm' => $form->createView(),
         ]);
+    }
+ 
+    private function imageToBase64($path) {
+        $path = $this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png';
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data = file_get_contents($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        return $base64;
     }
 }
