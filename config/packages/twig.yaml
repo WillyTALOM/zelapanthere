@@ -15,7 +15,7 @@ twig:
         contact_country: '%env(COUNTRY)%'
         varKey: varValue
     paths:
-        "/public/img": images
+        "public/img": images
 when@test:
     twig:
         strict_variables: true
