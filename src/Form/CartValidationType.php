@@ -66,7 +66,7 @@ class CartValidationType extends AbstractType
             ])
            ->add('payment', ChoiceType::class, [
                 'choices' => [
-                    'Paypal' => 'paypal',
+                    // 'Paypal' => 'paypal',
                     'Stripe'  => 'stripe'
                 ],
                 'label' => false,

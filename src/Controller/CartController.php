@@ -216,7 +216,7 @@ class CartController extends AbstractController
                     $order->setBillingAddress($address);
                     $order->setDeliveryAddress($address);
                     $order->setCarrier($carrier);
-                    $order->setMethod('stripe');
+                    $order->setMethod($cartValidationInfoForm['payment']->getData()); 
                     $order->setFirstName($firstName);
                     $order->setLastName($lastName);
                     $manager->persist($order);
@@ -235,7 +235,13 @@ class CartController extends AbstractController
 
 
                 $manager->flush();
-
+                if ($cartValidationInfoForm['payment']->getData() === 'stripe'){
+                    return $this->redirectToRoute('payment_stripe', [
+                        'order' => $order->getId()
+                    ]);}
+                    else{return $this->redirectToRoute('payment_paypal', [
+                        'order' => $order->getId()
+                    ]);}
                 // traite le transporteur comme un produit (± ajout au panier)
                 
                 return $this->redirectToRoute('payment_stripe', [

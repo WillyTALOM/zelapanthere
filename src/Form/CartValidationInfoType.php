@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -66,6 +67,16 @@ class CartValidationInfoType extends AbstractType
         ->add('zip')
         ->add('city')
         ->add('country', CountryType::class)
+        ->add('payment', ChoiceType::class, [
+            'choices' => [
+                // 'Paypal' => 'paypal',
+                'Stripe'  => 'stripe'
+            ],
+            'label' => false,
+            'required' => true,
+            'multiple' => false,
+            'expanded' => true
+       ]) 
             
         ;
         
