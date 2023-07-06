@@ -29,7 +29,7 @@
 				<div class="card-body p-4">
 					<div class="text-center">
 						<h5 class="fw-bolder">{{ product.name }}</h5>
-						<h6 id="text-des">{{ product.description|u.truncate(70,'...', false) }}</h6>
+						<h6 id="text-des">{{ product.description|u.truncate(30,'...', false) }}</h6>
 						{% if product.reduction == 0 %}
 						<span class="">{{product.price|number_format(2, ',', ' ')}} €</span>
 						{% else %}
