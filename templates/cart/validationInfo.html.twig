@@ -55,24 +55,24 @@
         {{ form_start(cartValidationInfoForm) }}
 		<div class="row">
 			<div class="col-6">
-				{{ form_label(cartValidationInfoForm.firstName, 'Prénom') }}
-				{{ form_errors(cartValidationInfoForm.firstName) }}
-				{{ form_widget(cartValidationInfoForm.firstName, {
+				{{ form_label(cartValidationInfoForm.first_name, 'Prénom') }}
+				{{ form_errors(cartValidationInfoForm.first_name) }}
+				{{ form_widget(cartValidationInfoForm.first_name, {
 				'attr': {
 				'placeholder': 'Ex.: John'
 				}
 				}) }}
-				{{ form_help(cartValidationInfoForm.firstName) }}
+				{{ form_help(cartValidationInfoForm.first_name) }}
 			</div>
 			<div class="col-6">
-				{{ form_label(cartValidationInfoForm.lastName, 'Nom') }}
-				{{ form_errors(cartValidationInfoForm.lastName) }}
-				{{ form_widget(cartValidationInfoForm.lastName, {
+				{{ form_label(cartValidationInfoForm.last_name, 'Nom') }}
+				{{ form_errors(cartValidationInfoForm.last_name) }}
+				{{ form_widget(cartValidationInfoForm.last_name, {
 				'attr': {
 				'placeholder': 'Ex.: Doe'
 				}
 				}) }}
-				{{ form_help(cartValidationInfoForm.lastName) }}
+				{{ form_help(cartValidationInfoForm.last_name) }}
 			</div>
 			<div class="col-6">
 				{{ form_row(cartValidationInfoForm.email, {

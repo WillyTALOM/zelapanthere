@@ -34,7 +34,6 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png');
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -60,7 +59,7 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
                     ->context([
                         'user' => $user,
-                        'contact_logo' => $contact_logo,
+
 
 
                     ])
@@ -74,14 +73,6 @@ class RegistrationController extends AbstractController
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
-    }
-    
-    private function imageToBase64($path) {
-        $path = $this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png';
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        return $base64;
     }
 
     #[Route('/verify/email', name: 'verify_email')]

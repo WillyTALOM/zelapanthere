@@ -253,13 +253,9 @@ footer #copyright p {
     width: 100%;
   }
 /*--------------------------------ICONS---------------------------------*/
-body {
-  background: #D0D8DB;
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
 
-textarea {
+
+/* textarea {
   resize: none;
 }
 
@@ -276,13 +272,13 @@ white-space: nowrap;
 
 .svg-inline--fa {
 vertical-align: -0.200em;
-}
+} */
 
 .rounded-social-buttons {
 text-align: center;
 }
 
-.rounded-social-buttons .social-button {
+ .rounded-social-buttons .social-button {
 display: inline-block;
 position: relative;
 cursor: pointer;
@@ -300,7 +296,7 @@ border-radius: 1.6875rem;
 transition: all 0.5s ease;
 margin-right: 0.25rem;
 margin-bottom: 0.25rem;
-}
+} 
 
 .rounded-social-buttons .social-button:hover, .rounded-social-buttons .social-button:focus {
 -webkit-transform: rotate(360deg);

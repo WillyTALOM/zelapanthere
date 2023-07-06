@@ -160,9 +160,12 @@ class CartController extends AbstractController
             $carrier = $cartValidationInfoForm['carrier']->getData();
             
             $email = $cartValidationInfoForm['email']->getData();
-
+            $firstName = $cartValidationInfoForm['first_name']->getData();
+            $lastName = $cartValidationInfoForm['last_name']->getData();
+            
 
             if ($cartValidationInfoForm->isSubmitted() && $cartValidationInfoForm->isValid()) {
+                
                 
                 $users = $userRepository->findAll();
 
@@ -187,32 +190,35 @@ class CartController extends AbstractController
                     $address->setZip($cartValidationInfoForm['zip']->getData());
 
                     $manager->persist($address);
-
+                
 
                     $user = new User();
-                    $user->setEmail($cartValidationInfoForm['email']->getData() . 1);
-                    $user->setLastName($cartValidationInfoForm['lastName']->getData());
-                    $user->setFirstName($cartValidationInfoForm['firstName']->getData());
+                    $user->setEmail($cartValidationInfoForm['email']->getData());
+                    $user->setLastName($lastName);
+                    $user->setFirstName($firstName);
                     $user->setPhone($cartValidationInfoForm['phone']->getData());
                     $user->setRoles(["ROLE_USER"]);
                     $user->addAddress($address);
                     $user->setCreatedAt(new DateTimeImmutable());
                     $user->setIsVerified(1);
-                    $user->setPassword($slugger->slug($cartValidationInfoForm['lastName']->getData() . 12345678));
-
-                    $manager->persist($user);                  
+                    $user->setPassword($slugger->slug($cartValidationInfoForm['last_name']->getData() . 12345678));
                     
+                    $manager->persist($user); 
+                                    
+            
                     $order = new Order(); // génère la commande en base de données
                     $order->setReference('O' . date_format(new \DateTime(), 'Ymdhis'));
                     $order->setAmount($cartService->getTotal() + $carrier->getPrice());
                     $order->setCreatedAt(new \DateTimeImmutable());
-                    $order->setOrderState($orderStateRepository->findOneBy(['name' => 'attente paiement']));
+                     
+                    $order->setOrderState($orderStateRepository->findOneBy(['name' => 'En attente de paiement']));
                     $order->setUser($user);
                     $order->setBillingAddress($address);
                     $order->setDeliveryAddress($address);
                     $order->setCarrier($carrier);
                     $order->setMethod('stripe');
-
+                    $order->setFirstName($firstName);
+                    $order->setLastName($lastName);
                     $manager->persist($order);
 
                     

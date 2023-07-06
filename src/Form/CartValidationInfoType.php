@@ -25,16 +25,16 @@ class CartValidationInfoType extends AbstractType
                 'maxLength' => 180
             ]
         ])
-        ->add('lastName', TextType::class, [
+        ->add('last_name', TextType::class, [
             'attr' => [
-                'maxLenght' => 100
-            ]
-        ])
-        ->add('firstName', TextType::class, [
+            'maxLenght' => 100
+        ]
+       ])
+        ->add('first_name', TextType::class, [
             'attr' => [
-                'maxLenght' => 100
-            ]
-        ])
+            'maxLenght' => 100
+        ]
+       ])
         ->add('phone', TextType::class, [
             'attr' => [
                 'maxLength' => 15

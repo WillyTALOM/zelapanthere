@@ -27,7 +27,6 @@ class PasswordController extends AbstractController
         $form->handleRequest($request);
         $manager = $managerRegistry->getManager();
         $user = $this->getUser();
-         $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png');
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user->setPassword($userPasswordHasherInterface->hashPassword(
@@ -47,7 +46,6 @@ class PasswordController extends AbstractController
                 ->subject('VDV - Confirmation de modification de mot de passe')
                 ->htmltemplate('password/password_change.html.twig')
                 ->context([
-                    'contact_logo' => $contact_logo,
                     'user' => $user
                 ]);
             $mailer->send($email);
@@ -61,13 +59,6 @@ class PasswordController extends AbstractController
         ]);
     }
     
-    private function imageToBase64($path) {
-        $path = $this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png';
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        return $base64;
-    }
     
     #[Route('/mot-de-passe-oublié ', name: 'reset_password')]
     public function forgottenPassword(MailerInterface $mailer, ManagerRegistry $managerRegistry, Request $request, UserRepository $userRepository, TokenGeneratorInterface $tokenGeneratorInterface): Response
@@ -75,8 +66,7 @@ class PasswordController extends AbstractController
         $form = $this->createForm(ForgotPasswordType::class);
         $form->handleRequest($request);
         $manager = $managerRegistry->getManager();
-        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png');
-
+       
         if ($form->isSubmitted() && $form->isValid()) {
             // récupère l'utilisateur par son email
             $user = $userRepository->findOneByEmail($form['email']->getData());
@@ -112,7 +102,6 @@ class PasswordController extends AbstractController
                     ->subject('Ze - Réinitialisation mot de passe')
                     ->htmltemplate('password/password_forgot.html.twig')
                     ->context([
-                        'contact_logo' => $contact_logo,
                         'url' => $url,
                         'user' => $user
                     ]);
