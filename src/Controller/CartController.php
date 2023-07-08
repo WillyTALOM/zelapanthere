@@ -221,6 +221,22 @@ class CartController extends AbstractController
                     $order->setLastName($lastName);
                     $manager->persist($order);
 
+                                
+                    $email = (new TemplatedEmail())
+                    ->from($this->getParameter('contact_email'))
+                    ->to($cartValidationInfoForm['email']->getData())
+                    ->subject('Réinitialisation mot de passe')
+                    ->htmlTemplate('email/reinitialisationmdp.html.twig')
+                    ->context([
+                        'user' => $user,
+
+
+
+                    ]);
+
+                     $mailer->send($email);
+
+                
                     
                     foreach ($cartService->getCart() as $line) {
                         $orderDetail = new OrderDetails();

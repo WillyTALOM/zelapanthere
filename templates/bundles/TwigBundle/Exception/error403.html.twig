@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block description %}Une erreur est survenue{% endblock %}
+
+{% block title %}erreur{% endblock %}
+
+{% block h1 %}Erreur 403{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>Accès refusé</h2>
+            <br>
+            <p>Vous n'avez pas la permission d'accéder à cette page.</p>
+            <br>
+            <p><a class="buttonb" href="{{ path('home') }}">Revenir à l'accueil</a></p>
+        </div>
+    </div>
+
+{% endblock %}

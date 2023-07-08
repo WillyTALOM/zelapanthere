@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block description %}Une erreur est survenue{% endblock %}
+
+{% block title %}erreur{% endblock %}
+
+{% block h1 %}Erreur 500{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>Erreur interne</h2>
+            <br>
+            <p><a class="buttonb" href="{{ path('home') }}">Revenir à l'accueil</a></p>
+        </div>
+    </div>
+
+{% endblock %}

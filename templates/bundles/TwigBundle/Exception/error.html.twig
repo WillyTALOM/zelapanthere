@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block description %}Une erreur est survenue{% endblock %}
+
+{% block title %}erreur{% endblock %}
+
+{% block h1 %}Erreur{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h2>Une erreur est survenue</h2>
+        {% if is_granted('ROLE_ADMIN')%}
+        <p><a class="buttonb" href="{{ path('admin_home') }}">Revenir à l'espace administrateur</a></p>
+        <br>
+        <p><a class="buttonb" href="{{ path('home') }}">Revenir à l'accueil du site</a></p>
+        {% elseif %}
+        <br>
+        <p><a class="buttonb"  href="{{ path('home') }}">Revenir à l'accueil</a></p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

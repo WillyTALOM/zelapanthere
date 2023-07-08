@@ -100,7 +100,7 @@
                             <h5 class="card-title">{{ featuredProduct.name|u.truncate(15,'...') }}</h5>
                         </div>
                         <div class="card-body pt-0">
-                            <a href="{{ path('product_show', {'slug': featuredProduct.slug}) }}" class="card-link btn btn-outline-dark rounded-pill button-shrink">Détails</a>
+                            <a href="{{ path('product_show', {'id': featuredProduct.id}) }}" class="card-link btn btn-outline-dark rounded-pill button-shrink">Détails</a>
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                 <a href="{{ path('favorite_add', {'id': featuredProduct.id}) }}" class="card-link btn btn-outline-danger rounded-pill"><i class="bi bi-heart-fill"></i></a>
                             {% endif %}

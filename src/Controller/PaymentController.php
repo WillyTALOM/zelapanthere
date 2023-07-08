@@ -116,7 +116,7 @@ class PaymentController extends AbstractController
             return $this->redirectToRoute('cart');
         }
         $cartService->clear(); // vide le panier
-        $contact_logo = $this->imageToBase64($this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png');
+      
         
         $order->setOrderState($orderStateRepository->findOneBy(['name' => 'payé'])); // définit le statut de la commande à "payé"
         $managerRegistry->getManager()->persist($order);
@@ -129,7 +129,7 @@ class PaymentController extends AbstractController
             ->subject('Nouvelle commande')
             ->htmlTemplate('email/order_new.html.twig')
             ->context([
-                'contact_logo' => $contact_logo,
+       
                 'order' => $order,
                 'orderDetails' => $order->getOrderDetails()
             ]);
@@ -142,7 +142,7 @@ class PaymentController extends AbstractController
             ->subject('Récapitulatif de commande')
             ->htmlTemplate('email/order_confirmation.html.twig')
             ->context([
-                'contact_logo' => $contact_logo,
+              
                 'order' => $order,
                 'orderDetails' => $order->getOrderDetails()
             ]);
@@ -159,11 +159,5 @@ class PaymentController extends AbstractController
         return $this->render('payment/success.html.twig', ['order' => $order,]);
     }
          
-    private function imageToBase64($path) {
-        $path = $this->getParameter('kernel.project_dir') . '/public/img/category/1688415669-1.png';
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-        return $base64;
-    }
+
 }
