@@ -50,4 +50,54 @@
             </div>
         </section>
     </div>
+    {% if app.user %}
+			
+    {{form_start(commentForm)}}
+    <div class="row">
+       
+        <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="comment-form-wrap pt-5">
+            <h3 class="mb-5"><strong>Laisser un commentaire</strong></h3>
+           {{form_widget(commentForm.content,{'attr':{'class':'form form-control','placeholder':'commentaire' }}) }}
+    
+        </div>
+    </div>
+     
+    <div class="row text-end my-5">
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    <button class="buttonb" type="submit">Commenter</button>
+
+            </div>
+    </div>
+  
+    {{form_end(commentForm)}}
+ </div>
+		{% else %}
+			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2 p-3">
+            <div class="comment-form-wrap pt-5">
+            <div class="my-3 text-center">
+			<p><strong><h4 class="mb-5">Veuillez vous connecter pour laisser un commentaire </h4></strong> <a class="buttonb" href="{{ path('login') }}">Connectez-vous</a> </p>
+		   </div>
+        </div>
+		{% endif %}
+ <div class="row">
+      <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">       
+        <ul class=" comment-list ">
+            {% for comment in comments %}
+            <li class="comment">
+                {# <div class="vcard">
+                    <img src="" alt = " Image placeholder ">
+                </div> #}
+                <div class=" comment-body ">
+                    <h3> {{comment.author.firstName ~ " " ~ comment.author.lastName}}</h3>
+                    <div class=" meta " >{{comment.createdAt|date('d-m-Y')}} </div>
+                    <p>{{comment.content}}</p>
+                    {# <p> <a href="#" class="reply rounded"> Reply </a> </p> #}
+                </div>
+            </li>
+           {% endfor %} 
+        </ul>
+    </div>
+    </div>       
+   
 {% endblock %}

@@ -58,12 +58,23 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
+    #[ORM\OneToMany(mappedBy: 'Product', targetEntity: Commentaire::class)]
+    private Collection $commentaires;
+
+    public function __toString()
+    {
+        return 
+            $this->getDescription() . ' ' . $this->getReference() . ' ' .
+            $this->getAbstract() . '-' .
+            $this->getSlug();
+    }
 
     public function __construct()
     {
         $this->image = new ArrayCollection();
         $this->orderDetails = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -289,6 +300,36 @@ class Product
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): static
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires->add($commentaire);
+            $commentaire->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): static
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getProduct() === $this) {
+                $commentaire->setProduct(null);
+            }
+        }
 
         return $this;
     }

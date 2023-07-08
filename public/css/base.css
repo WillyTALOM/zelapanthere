@@ -368,3 +368,18 @@ background-clip: text;
 font-size: 200px; /* change this to change the size*/
 
 }
+
+.rounded-social-buttons .social-button.whatsapp {
+  background: #25d366;
+  }
+  
+  .rounded-social-buttons .social-button.whatsapp:hover, .rounded-social-buttons .social-button.whatsapp:focus {
+  color: #bb0000;
+  background: #fefefe;
+  border-color: #bb0000;
+  }
+  
+
+
+
+

@@ -38,7 +38,7 @@
 				</div>
 				<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 					<div class="text-center">
-						<a href="{{ path('product_show', {slug: product.slug}) }}"
+						<a href="{{ path('product_show', {id: product.id }) }}"
 							class="card-link btn btn-outline-dark rounded-pill button-shrink">Détails</a>
 						<a href="{{ path('cart_add', {'id' : product.id }) }}"
 							class="card-link rounded-pill btn btn-outline-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}">
