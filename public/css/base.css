@@ -36,9 +36,7 @@ header {
     z-index: 1;
 }
 
-header img {
-    height: 35px;
-}
+
   
 
 /* **************************************** MAIN **************************************** */
@@ -53,6 +51,24 @@ table img {
     aspect-ratio: 1/1;
     object-fit: contain;
 }
+/* .card {
+  min-height: 160px;
+}
+
+.card .card-body h5 {
+  min-height: 48px;
+}
+
+.card .card-img-top,
+.col-4 img {
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+
+.main-image {
+  aspect-ratio: 1/1;
+  object-fit: contain;
+} */
 
 /* **************************************** FOOTER **************************************** */
 
