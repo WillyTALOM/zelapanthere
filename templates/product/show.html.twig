@@ -43,7 +43,7 @@
                 <p>Prix : {{ product.price|number_format(2, ',', '
 					') }} €</p>
                 {% if product.quantity > 0 %}
-                    <a href="{{ path('cart_add', {'id' : product.id }) }}" class="rounded-pill btn btn-outline-success">Ajouter au panier</a>
+                    <a href="{{ path('cart_add', {'id' : product.id }) }}" class=" buttonb text-decoration-none">Ajouter au panier</a>
                 {% else %}
                     <p class="text-danger">Temporairement en rupture de stock</p>
                 {% endif %}
