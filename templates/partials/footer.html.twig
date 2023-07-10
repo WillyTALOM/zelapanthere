@@ -5,7 +5,7 @@
             <hr class="m-3"></hr>
             <ul>
                 <li><a href="{{ path('home') }}" class="text-light">Accueil</a></li>
-                <li><a href="#" class="text-light">Produits</a></li>
+                <li><a href="{{ path('product_list')}}" class="text-light">Produits</a></li>
                 {% if app.user %}
                     <li><a href="{{ path('logout') }}" class="text-light">Déconnexion</a></li>
                 {% else %}
