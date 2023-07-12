@@ -36,5 +36,11 @@
             sessionId: '{{ sessionId }}'
         })
     </script>
+    {#<script>
+        var stripe = Stripe('pk_live_51NQs3JDlzTiQgy9MPTq9jUYFVUYXM7puFtA2wTDdtpuIg6pxgtpMG8o4rOu5eXVrp2pLJfObc8rOh0p0rgA9Ktrl009QCMHRXM'); // initialise Stripe
+        stripe.redirectToCheckout({
+            sessionId: '{{ sessionId }}'
+        })
+    </script>#}
 
 {% endblock %}
