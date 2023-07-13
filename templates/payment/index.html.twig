@@ -29,18 +29,18 @@
 
     <script src="https://js.stripe.com/v3/"></script>
 
-    
+{#     
     <script>
         var stripe = Stripe('pk_test_51Le0dIKhOJnU8RJKTxlD1GSQbBISYxcCnW8ErpW8x7YgDUO6pNoa59STGjXtyIe6z9XiEbmhhFSLrlFE30W7yxnK005y1q1ots'); // initialise Stripe
         stripe.redirectToCheckout({
             sessionId: '{{ sessionId }}'
         })
-    </script>
-    {#<script>
+    </script> #}
+    <script>
         var stripe = Stripe('pk_live_51NQs3JDlzTiQgy9MPTq9jUYFVUYXM7puFtA2wTDdtpuIg6pxgtpMG8o4rOu5eXVrp2pLJfObc8rOh0p0rgA9Ktrl009QCMHRXM'); // initialise Stripe
         stripe.redirectToCheckout({
             sessionId: '{{ sessionId }}'
         })
-    </script>#}
+    </script>
 
 {% endblock %}
