@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OrderController extends AbstractController
 {
-    #[Route('/admin1025/{orderState}', name: 'admin_orders')]
+    #[Route('/admin1025/order/{orderState}', name: 'admin_orders')]
     public function index(string $orderState, OrderRepository $orderRepository, OrderStateRepository $orderStateRepository,Request $request, PaginatorInterface $paginator): Response
     {
         $orderState = $orderStateRepository->findOneBy(['name' => $orderState]);
