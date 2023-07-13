@@ -18,8 +18,25 @@ class OrderController extends AbstractController
     public function index(OrderRepository $orderRepository): Response
     {
         return $this->render('Admin/order/orderList.html.twig', [
-            'orders' => $orderRepository->findAll()
+            'orders' => $orderRepository->findBy(['orderStateName' => $orderStateName])
         ]);
+        
+        //     $category = $categoryRepository->findOneBy(['name' => $category]);
+    //     $products = $productRepository->findBy(['category' => $category]);
+
+    //     // $data = $products;
+
+    //     // $products = $paginator->paginate(
+    //     //     $data,
+    //     //     $request->query->getInt('page', 1),
+    //     //     12
+    //     // );
+
+    //     return $this->render('product/sexe.html.twig', [
+    //         'products' => $products,
+    //         'category' => $category
+    //     ]);
+    // }
     }
 
     #[Route('/admin1025/order/{id}', name: 'admin_order_show')]
