@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\OrderDetails;
+use App\Entity\OrderState;
 use App\Form\OrderStateType;
 use App\Repository\OrderRepository;
 use App\Repository\OrderStateRepository;
@@ -25,7 +26,7 @@ class OrderController extends AbstractController
         $orders = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
-            20
+            5
         );
         return $this->render('Admin/order/orderList.html.twig', [
             'orders' => $orders
@@ -57,18 +58,19 @@ class OrderController extends AbstractController
         $order = $orderRepository->find($id);
         $orderDetails = $orderDetailsRepository->find($id); 
         $manager = $managerRegistry->getManager();
-        
+        $orderState = $orderStateForm->get('name')->getData();
 
         if ($orderStateForm->isSubmitted() && $orderStateForm->isValid()){
 
-        $orderState = $orderStateForm->get('name')->getData();
            $order->setOrderState($orderState);
-            dd($order);
             $manager->persist($order);
+            $manager->flush();
+        $this->addFlash('success', 'Le statut de la commande a bien été modifié');
+            return $this->redirectToRoute('admin_orders', ['orderState'=>'payé'], Response::HTTP_SEE_OTHER);
 
         }
 
-        $manager->flush();
+        
 
         return $this->render('Admin/order/orderShow.html.twig', [
             'order' => $order,

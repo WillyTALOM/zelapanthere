@@ -22,7 +22,11 @@ class OrderStateType extends AbstractType
                 'Livré' => 'Livré',
                 'Attente paiement'=> 'Attente paiement',
                 'Payé' => 'Payé',
-            ]
+            ],   
+                'label' => false,
+                'required' => true,
+                'multiple' => false,
+                'expanded' => true
         ])
         
         ;
