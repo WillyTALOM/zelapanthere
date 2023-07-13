@@ -42,9 +42,15 @@
         </tbody>
     </table>
 
-    <div class="text-end mt-4">
+    {# <div class="text-end mt-4">
         <a href="#" class="btn btn-outline-success button-shrink">Créer une commande</a>
-    </div>
+    </div> #}
+
+    <div class="pagination-container">
+	{% do products.setPageRange(1) %}
+	{{ knp_pagination_render(products, 'partials/pagination.html.twig') }}
+
+</div>
     
 {% endblock %}
 
