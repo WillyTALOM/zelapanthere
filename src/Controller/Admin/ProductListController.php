@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductListController extends AbstractController
 {
-    #[Route('/admin1025/products', name: 'admin_product_list' , methods: ['GET'])]
+    #[Route('/admin1025/products/liste', name: 'admin_product_list' , methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
         return $this->render('Admin/product/adminList.html.twig', [
