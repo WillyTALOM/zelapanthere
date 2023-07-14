@@ -70,7 +70,7 @@ class CartValidationInfoType extends AbstractType
         ->add('payment', ChoiceType::class, [
             'choices' => [
                 // 'Paypal' => 'paypal',
-                'Stripe'  => 'stripe'
+                'Carte bancaire'  => 'carte bancaire'
             ],
             'label' => false,
             'required' => true,
