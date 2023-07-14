@@ -131,7 +131,7 @@ class CartController extends AbstractController
 
                 // traite le transporteur comme un produit (± ajout au panier)
                 // if($request->request->get('stripe')){
-                if ($cartValidationForm['payment']->getData() === 'stripe'){
+                if ($cartValidationForm['payment']->getData() === 'carte bancaire'){
                     return $this->redirectToRoute('payment_stripe', [
                         'order' => $order->getId()
                     ]);}
@@ -251,7 +251,7 @@ class CartController extends AbstractController
 
 
                 $manager->flush();
-                if ($cartValidationInfoForm['payment']->getData() === 'stripe'){
+                if ($cartValidationInfoForm['payment']->getData() === 'carte bancaire'){
                     return $this->redirectToRoute('payment_stripe', [
                         'order' => $order->getId()
                     ]);}
