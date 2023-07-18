@@ -46,7 +46,8 @@
 </div>
 {% for address in registrationForm.addresses %}
 
-	<div class="col-3">
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 		{{ form_row(address.address , {
 		'label': 'Adresse',
 		'attr': {
@@ -54,8 +55,10 @@
 		}
 		}) }}
 	</div>
+</div>	
 
-	<div class="col-3">
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 		{{ form_row(address.additional , {
 		'label': 'Adresse complémentaire',
 		'attr': {
@@ -63,8 +66,10 @@
 		}
 		}) }}
 	</div>
+</div>	
 
-	<div class="col-3">
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 		{{ form_row(address.zip , {
 		'label': 'Code postale',
 		'attr': {
@@ -73,8 +78,10 @@
 		}) }}
 
 	</div>
+</div>	
 
-	<div class="col-3">
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 		{{ form_row(address.city , {
 		'label': 'Ville',
 		'attr': {
@@ -82,8 +89,10 @@
 		}
 		}) }}
 	</div>
+</div>	
 
-	<div class="col-3">
+<div class="row">
+	<div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 		{{ form_row(address.country , {
 		'label': 'Pays',
 		'attr': {
@@ -91,6 +100,8 @@
 		}
 		}) }}
 	</div>
+</div>	
+	
 
 	{% endfor %}
 

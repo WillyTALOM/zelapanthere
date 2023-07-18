@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use DateTimeImmutable;
+use App\Entity\Address;
 use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
-use Symfony\Component\Mime\Address;
+use App\Repository\UserRepository;
+use App\Repository\AddressRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -29,13 +31,22 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/inscrivez-vous', name: 'register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginFormAuthenticator $authenticator, EntityManagerInterface $entityManager, UserRepository $userRepository, AddressRepository $addressRepository): Response
     {
         $user = new User();
+        $address = new Address();
+
+
+        $user->getAddresses()->add($address);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $users = $userRepository->findAll();
+            $userFirstNames = [];
+            $userLastNames = [];
+           
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -43,8 +54,26 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+
+            $addresses = $addressRepository->findAll();
+            $newAddress = [];
+            $addressAdditional = [];
+            $addressZip = [];
+            $addressCity = [];
+            $addressCountry = [];
+
+            foreach ($addresses as $existingAddress) {
+                $newAddress[] = $existingAddress->getAddress();
+                $addressAdditional[] = $existingAddress->getAdditional();
+                $addressZip[] = $existingAddress->getZip();
+                $addressCity[] = $existingAddress->getCity();
+                $addressCountry[] = $existingAddress->getCity();
+            }
+
+            $address->setUser($user);
             $user->setCreatedAt(new DateTimeImmutable());
             $user->setRoles(["ROLE_USER"]);
+            $entityManager->persist($address);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -53,7 +82,7 @@ class RegistrationController extends AbstractController
                 'verify_email', 
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address($this->getParameter('contact_email'), 'Mamayayatoh'))
+                    ->from($this->getParameter('contact_email'))
                     ->to($user->getEmail())
                     ->subject('Confirmez votre adresse email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
